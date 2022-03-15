@@ -3,7 +3,7 @@
 ### Tehtävät
 
 ### Viikko 1
-muutos
+lisämuutos
 
 [gitlog.txt](https://github.com/zmejka/ot-harjoitustyo/blob/master/laskarit/viikko1/gitlog.txt)
 
