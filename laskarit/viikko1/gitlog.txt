@@ -1,3 +1,4 @@
+Lisätty tekstiä
 evgeniia@Zmejka:~/Asiakirjat/Opinnot/OhTe/ot_viikko1/tiedostoja> git log --stat | cat
 commit 22d6416847b4dbdfa2705036f753cd292d596217
 Author: evgeniia <evgeniia@saunalahti.fi>
