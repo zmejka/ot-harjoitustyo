@@ -1,0 +1,1 @@
+Viikko 1: uusi ohjelma, luotu laiva- ja kenttä- luokat.
