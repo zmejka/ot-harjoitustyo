@@ -1,10 +1,10 @@
 ## Ohjelmistotekniikka, harjoitustyö
 
-##Laivanupotuspeli
+## Laivanupotuspeli
 
 Sovelluksen toiminta on toteutettu Python-versiolla 3.8. Sovelluksen toteutus on vasta aloitettu.
 
-###Dokumentaatio
+### Dokumentaatio
 
 [Vaatimusmäärittely](https://github.com/zmejka/ot-harjoitustyo/blob/master/dokumentaatio/vaatimusmaarittely.md)
 
@@ -12,12 +12,12 @@ Sovelluksen toiminta on toteutettu Python-versiolla 3.8. Sovelluksen toteutus on
 
 [Changelog](https://github.com/zmejka/ot-harjoitustyo/blob/master/dokumentaatio/changelog.md)
 
-###Asennus
+### Asennus
 1. Asennuskomento:
 
         poetry install
 
-###Toiminnot
+### Toiminnot
 
 1. Käynnistys:
 
