@@ -14,4 +14,5 @@
 |10.4| 1.5 | Pylint raportti ja koodin siivous
 |10.4| 4.5 | Board-luokan toiminnan toteutus
 |11.4|3| Unittest:en kirjoittaminen Board-luokalle. Dokumentaation päivitys
-|Yhteensä:| 27 | tuntia
+|12.4|1.5| Sequence-kaavion toteutus. Dokumentaation päivitys
+|Yhteensä:| 28.5 | tuntia
