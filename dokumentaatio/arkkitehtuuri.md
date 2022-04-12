@@ -40,3 +40,7 @@ Player luokka ei ole vielä toteutettu. Myös Game luokka ei ole vielä toteutet
 ## Päätoiminnallisuudet
 
 Sequence-kaavio on pahasti kesken, koska osa luokista ei vielä toteutettu.
+
+### Laivojen alustus
+
+![Sequence](https://github.com/zmejka/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/vko_4_sequence.png)
