@@ -5,23 +5,29 @@ class Ship:
         self.name = name
         self.length = length
         self.orientation = orientation  #orientation: 1 = vertical, 0 = horizontal
+        self.status = False
 
-    def setName(self, shipname):
+    def set_name(self, shipname):
         self.name = shipname
 
-    def getName(self):
+    def get_name(self):
         return self.name
 
-    def setLength(self, length):
+    def set_length(self, length):
         if length > 0:
             self.length = length
 
-    def getLength(self):
+    def get_length(self):
         return self.length
 
-    def setOrientation(self, orientation):
+    def set_orientation(self, orientation):
         self.orientation = orientation
 
-    def getOrientation(self):
+    def get_orientation(self):
         return self.orientation
 
+    def set_status(self, status):
+        self.status = status
+
+    def is_sunk(self):
+        return self.status

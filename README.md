@@ -12,6 +12,8 @@ Sovelluksen toiminta on toteutettu Python-versiolla 3.8. Sovelluksen toteutus on
 
 [Changelog](https://github.com/zmejka/ot-harjoitustyo/blob/master/dokumentaatio/changelog.md)
 
+[Arkkitehtuuri](https://github.com/zmejka/ot-harjoitustyo/blob/master/dokumentaatio/arkkitehtuuri.md)
+
 ### Asennus
 1. Asennuskomento:
 
@@ -30,6 +32,10 @@ Sovelluksen toiminta on toteutettu Python-versiolla 3.8. Sovelluksen toteutus on
 3. Testikattavuus
 
         poetry run invoke coverage-report
+
+4. Pylint testaus
+
+        poetry run invoke lint
 
 
 

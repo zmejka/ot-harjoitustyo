@@ -8,7 +8,7 @@ class GameBoard:
         self.all_sprites = pygame.sprite.Group()
         self.board = board
 
-        clock = pygame.time.Clock()
+        #clock = pygame.time.Clock()
         self._initialize_sprites(board)
         self.all_sprites.update()
 
@@ -26,4 +26,4 @@ class GameBoard:
                     self.sea.add(Sea(norm_i, norm_j))
 
         self.all_sprites.add(self.sea)
-
+        

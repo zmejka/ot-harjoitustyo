@@ -7,8 +7,9 @@ class GameLoop:
 
     def start(self):
         while True:
-            if self._event() == False:
+            if not self._event():
                 break
 
     def _event(self):
         return True
+        

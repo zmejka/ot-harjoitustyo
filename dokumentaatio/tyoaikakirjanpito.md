@@ -11,3 +11,7 @@
 | 3.4 | 4 | Tutustuminen Pygame toimintaan, pelikentän luominen 
 | 4.4 | 3.5 | Unittest:en kirjoittaminen. Dokumentaation päivittäminen. Pelikentän suunnittelu. README.md päivitys
 |5.4| 2 | Pelikentän grafiikat. Ohjelman testaminen virtuaalityöasemalla.
+|10.4| 1.5 | Pylint raportti ja koodin siivous
+|10.4| 4.5 | Board-luokan toiminnan toteutus
+|11.4|3| Unittest:en kirjoittaminen Board-luokalle. Dokumentaation päivitys
+|Yhteensä:| 27 | tuntia
