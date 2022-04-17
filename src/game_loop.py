@@ -1,4 +1,3 @@
-import pygame
 
 class GameLoop:
     def __init__(self, game_board, cell):

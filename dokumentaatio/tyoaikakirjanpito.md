@@ -15,4 +15,7 @@
 |10.4| 4.5 | Board-luokan toiminnan toteutus
 |11.4|3| Unittest:en kirjoittaminen Board-luokalle. Dokumentaation päivitys
 |12.4|1.5| Sequence-kaavion toteutus. Dokumentaation päivitys
-|Yhteensä:| 28.5 | tuntia
+|13.4| 2 | Ampumisen toiminnallisuuden toteutus
+|14.4|3.5| Yksinpelin UI:n ja peliluupin toteutus. Laivojen ja rähähdyksen kuvien piirtäminen
+|15.4|2| UI toteutuksen jatkaminen.
+|Yhteensä:| 36 | tuntia

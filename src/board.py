@@ -22,29 +22,27 @@ class Board:
         self.ships.append(submarine)
         self.ships.append(destroyer)
 
-    def ship_position(self):
-        #letters = ['A','B','C','D','E','F','G','H','I','J']
-        #random.choice(letters)
-        return int(random.randint(0,9)), int(random.randint(0,9))
-
     def initialize_ships(self):
         for i in self.ships:
             location = False
             while not location:
-                coordinates = self.ship_position()
-                location = self.place_the_ship(coordinates, i.get_orientation(), i.get_length())
+                coordinates = i.ship_position()
+                if self.place_the_ship(coordinates, i.get_orientation(), i.get_length()):
+                    i.position = coordinates
+                    location = True
 
     def place_the_ship(self, coordinates, orientation, length):
+        print("Laiva: ",length, coordinates, orientation)
         if orientation == 1 and coordinates[0]+length < 9:
-            for i in range(length):
-                self.overlap_check(coordinates, orientation, length)
-                self.board[coordinates[0]+i][coordinates[1]]=1
-            return True
+            if self.overlap_check(coordinates, orientation, length):
+                for i in range(length):                
+                    self.board[coordinates[0]+i][coordinates[1]]=1
+                return True
         if orientation == 0 and coordinates[1]+length < 9:
-            for i in range(length):
-                self.overlap_check(coordinates, orientation, length)
-                self.board[coordinates[0]][coordinates[1]+i]=1
-            return True
+            if self.overlap_check(coordinates, orientation, length):
+                for i in range(length):
+                    self.board[coordinates[0]][coordinates[1]+i]=1
+                return True
         return False
 
     def overlap_check(self, coordinates, orientation, length):
@@ -52,13 +50,15 @@ class Board:
             for i in range(length):
                 if self.board[coordinates[0]+i][coordinates[1]]==1:
                     return False
-            return True
         if orientation == 0:
             for i in range(length):
                 if self.board[coordinates[0]][coordinates[1]+i]==1:
                     return False
-            return True
-        return False
+        return True
+        
+    def shot(self, var1, var2):
+        if self.board[var1][var2] < 2:
+            self.board[var1][var2] = self.board[var1][var2] + 2
 
     def print_board(self):
         for i in self.board:

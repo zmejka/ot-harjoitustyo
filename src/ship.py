@@ -1,3 +1,4 @@
+import random
 
 class Ship:
 
@@ -6,6 +7,7 @@ class Ship:
         self.length = length
         self.orientation = orientation  #orientation: 1 = vertical, 0 = horizontal
         self.status = False
+        self.position = (0,0)
 
     def set_name(self, shipname):
         self.name = shipname
@@ -31,3 +33,8 @@ class Ship:
 
     def is_sunk(self):
         return self.status
+
+    def ship_position(self):
+        #letters = ['A','B','C','D','E','F','G','H','I','J']
+        #random.choice(letters)
+        return int(random.randint(0,9)), int(random.randint(0,9))

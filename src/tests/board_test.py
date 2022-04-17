@@ -1,6 +1,5 @@
 import unittest
 from board import Board
-from ship import Ship
 
 class TestShip(unittest.TestCase):
     def setUp(self):
