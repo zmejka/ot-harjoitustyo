@@ -2,10 +2,17 @@ import random
 
 class Ship:
 
+    ''' Arguments:
+    name = string.
+    length = int, length of the ship between 2 - 5.
+    orientation: 1 = vertical, 0 = horizontal.
+    game_status = if "True" ship are sunk.
+    position = coordinates (row,column) of the bow of the ship  '''
+
     def __init__(self, name, length, orientation):
         self.name = name
         self.length = length
-        self.orientation = orientation  #orientation: 1 = vertical, 0 = horizontal
+        self.orientation = orientation
         self.status = False
         self.position = (0,0)
 
@@ -31,10 +38,8 @@ class Ship:
     def set_status(self, status):
         self.status = status
 
-    def is_sunk(self):
+    def are_sunk(self):
         return self.status
 
     def ship_position(self):
-        #letters = ['A','B','C','D','E','F','G','H','I','J']
-        #random.choice(letters)
         return int(random.randint(0,9)), int(random.randint(0,9))

@@ -39,4 +39,4 @@ class TestShip(unittest.TestCase):
         self.assertEqual(self.ship.status, False)
 
     def test_is_sunk(self):
-        self.assertEqual(self.ship.is_sunk(), False)
+        self.assertEqual(self.ship.are_sunk(), False)

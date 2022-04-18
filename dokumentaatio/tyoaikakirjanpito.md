@@ -18,4 +18,6 @@
 |13.4| 2 | Ampumisen toiminnallisuuden toteutus
 |14.4|3.5| Yksinpelin UI:n ja peliluupin toteutus. Laivojen ja rähähdyksen kuvien piirtäminen
 |15.4|2| UI toteutuksen jatkaminen.
-|Yhteensä:| 36 | tuntia
+16.4| 2 | Board-luokan laivojen päällekkäisasettamisen eston toiminnallisuuden korjaaminen
+17.4| 1.5| Board-luokan pelin korjaaminen jatkuu. Pelin lopetuksen toiminnallisuuden toteutus. Korjauksia yksinpelin UI:ssa 
+|Yhteensä:| 39.5 | tuntia

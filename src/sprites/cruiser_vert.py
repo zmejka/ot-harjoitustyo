@@ -1,7 +1,7 @@
 import pygame
 from image import image
 
-class Cruiser_vert(pygame.sprite.Sprite):
+class CruiserVert(pygame.sprite.Sprite):
     def __init__(self, x_axis, y_axis):
         super().__init__()
 
