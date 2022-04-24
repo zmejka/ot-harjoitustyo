@@ -23,4 +23,6 @@
 |18.4| 2 | Koodin kommentointi ja siivous (Pylint). Pieniä korjauksia yksinpelin toiminnallisuudessa.
 |19.4| 4 | Päävalikon UI toteutus. Yksinpelin UI:n erottaminen omaksi luokaksi aloitettu.
 |20.4| 2.5| Yksinpelin bugikorjauksia sekä pelin lopetustoiminnot.
-|Yhteensä:| 48 | tuntia
+|21.4| 2 | Yksinpelin UI:n korjauksia
+|24.4| 4 | Korjauksia pelitoiminnoissa. Unittestit. Dokumentaation päivitys
+|Yhteensä:| 54 | tuntia

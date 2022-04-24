@@ -2,7 +2,10 @@
 
 ## Laivanupotuspeli
 
-Sovelluksen toiminta on toteutettu Python-versiolla 3.8. Sovelluksen toteutus on vasta aloitettu.
+Sovelluksen toiminta on toteutettu Python-versiolla 3.8. 
+
+Peli on versio perinteisesta laivanupotuspelistä. Pelissä voi pelata joko yksin tai pelata tietokonetta vastaan. Yksinpelissä tavoitteena löytää kenttään piilotettuja laivoja ennen kuin ammukset loppuu. Pelissä tietokonetta vasten tavoittena upottaa tietokoneen laivat ennen kuin tietokone upottaa kaikki pelaajan laivat.
+
 
 ### Dokumentaatio
 
@@ -13,6 +16,8 @@ Sovelluksen toiminta on toteutettu Python-versiolla 3.8. Sovelluksen toteutus on
 [Changelog](https://github.com/zmejka/ot-harjoitustyo/blob/master/dokumentaatio/changelog.md)
 
 [Arkkitehtuuri](https://github.com/zmejka/ot-harjoitustyo/blob/master/dokumentaatio/arkkitehtuuri.md)
+
+[Pelisäännöt](https://github.com/zmejka/ot-harjoitustyo/blob/master/dokumentaatio/battleship.pdf)
 
 ### Asennus
 1. Asennuskomento:
