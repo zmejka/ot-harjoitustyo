@@ -2,17 +2,18 @@
 ----
 ## Rakenne
 
-Tätä osuutta ei vielä tehty
+Tässä vaiheessa sovelluksen rakenne koostuu luokista main, ship ja board. Lisäksi sovelluksessa on 2 käyttöliittymäluokkaa sekä 13 sprites luokkaa.
 
+![Rakenne](https://github.com/zmejka/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/rakenne_kuva.png)
 ----
 ## Käyttöliittymä
 
-Käyttöliittymä ei vielä toteutettu
+Käyttöliittymäluokat ovat menu ja single. Menu luokkaa sisältää aloitusvalikon, josta voi valita haluttu peli tai lopettaa sovelluksen käyttämistä. 
 
 ----
 ## Sovelluslogiikka
 
-Player luokka ei ole vielä toteutettu. Myös Game luokka ei ole vielä toteutettu. Tämän vuoksi rakenne on vajavaista.
+Player luokka ei ole vielä toteutettu. Tämän vuoksi rakenne on vajavaista.
 
 ```mermaid
  classDiagram
@@ -39,7 +40,7 @@ Player luokka ei ole vielä toteutettu. Myös Game luokka ei ole vielä toteutet
 ----
 ## Päätoiminnallisuudet
 
-Sequence-kaavio on pahasti kesken, koska osa luokista ei vielä toteutettu.
+Sequence-kaavio on tämän hetken tilannetta kuvaava kaavio. 
 
 ### Laivojen alustus
 
