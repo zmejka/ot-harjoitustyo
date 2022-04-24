@@ -14,6 +14,7 @@ class Board:
         self.visible = True
         self.ships = []
         self.game_status = False
+        self.ammo = 40
 
     def create_ships(self):
         ''' Creating 5 types of ships with random oriantation and adding to ships-list. '''
@@ -68,8 +69,12 @@ class Board:
 
     def shot(self, var1, var2):
         ''' Shooting to the board. '''
-        if self.board[var1][var2] < 2:
-            self.board[var1][var2] = self.board[var1][var2] + 2
+        if self.ammo > 0:
+            if self.board[var1][var2] < 2:
+                self.board[var1][var2] = self.board[var1][var2] + 2
+            self.ammo = self.ammo - 1
+            return True
+        return False
 
     def print_board(self):
         ''' Printing the board for testing. '''
