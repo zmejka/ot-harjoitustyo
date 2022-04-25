@@ -20,6 +20,10 @@ Pelissä tietokonetta vasten tavoittena upottaa tietokoneen laivat ennen kuin ti
 
 [Pelisäännöt](https://github.com/zmejka/ot-harjoitustyo/blob/master/dokumentaatio/battleship.pdf)
 
+### Julkaisu
+
+[Release 1](https://github.com/zmejka/ot-harjoitustyo/releases/tag/viikko5)
+
 ### Asennus
 1. Asennuskomento:
 
