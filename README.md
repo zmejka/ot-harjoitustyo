@@ -4,7 +4,8 @@
 
 Sovelluksen toiminta on toteutettu Python-versiolla 3.8. 
 
-Peli on versio perinteisestä laivanupotuspelistä. Pelissä voi pelata joko yksin tai pelata tietokonetta vastaan. Yksinpelissä tavoitteena löytää kenttään piilotettuja laivoja ennen kuin ammukset loppuu. Pelissä tietokonetta vasten tavoittena upottaa tietokoneen laivat ennen kuin tietokone upottaa kaikki pelaajan laivat.
+Peli on versio perinteisestä laivanupotuspelistä. Pelissä voi pelata joko yksin tai pelata tietokonetta vastaan. Yksinpelissä tavoitteena löytää kenttään piilotettuja laivoja ennen kuin ammukset loppuvat. 
+Pelissä tietokonetta vasten tavoittena upottaa tietokoneen laivat ennen kuin tietokone upottaa kaikki pelaajan laivat. Tämä osuus ei vielä toteutettu.
 
 
 ### Dokumentaatio
@@ -41,10 +42,3 @@ Peli on versio perinteisestä laivanupotuspelistä. Pelissä voi pelata joko yks
 4. Pylint testaus
 
         poetry run invoke lint
-
-
-
-
-
-
-
