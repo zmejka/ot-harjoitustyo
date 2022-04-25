@@ -9,7 +9,7 @@
 - Testaus: luotu testit luokille Ship ja Board. Testien kattavuus kokonaisuudessa on 46%, luokan Ship kattavuus on 100% ja luokan Board kattavuus on 69%.
 
 ### Viikko 5: 
-- Luotu aloitusmenun käyttöliittymä. Näkymässä toimivat tässä vaiheessa yksinpeli- ja pelin lopetus- toiminnot
+- Luotu aloitusmenun käyttöliittymä. Näkymässä toimivat tässä vaiheessa yksinpeli- ja pelin lopetus- toiminnot. 
 - Luotu yksinpelin käyttöliittymä. Pelissä on 40 ammusta. Peli päätyy, kun kaikki laivat on ammuttu tai ammukset loppuvat. Toiminnallisuudesta puuttuu ilmoitukset kuten laiva (nimi) on uppunut tai kuinka monta ammusta on jäljellä.
-- Peli tietokonetta vasten on aloitettu. Tässä vaiheessa pelissä tulostuu kentät sekä kentälle arvotut laivat. Laivoja pystyy ampumaan samalla tavoin kuin yksinpelissä. Seuraavaksi laivojen arpominen korvataan laivojen asettamisella pelaajan toimeesta.
-- Testaus: testauksesta on poistettu käyttöliittymien testaus. Ship luokan testauksessa puuttuu random-koordinattien testaus. 
+- Peli tietokonetta vasten on aloitettu. Tässä vaiheessa pelissä tulostuu kentät sekä kentälle arvotut laivat. Laivoja pystyy ampumaan samalla tavoin kuin yksinpelissä. Seuraavaksi laivojen arpominen korvataan laivojen asettamisella pelaajan toimeesta sekä tietokoneen luomaan kenttään ampumiset.
+- Testaus: testauksesta on poistettu käyttöliittymien testaus. Ship luokan testauksessa puuttuu random-koordinattien testaus. Testauksen kattavuus on vasta 44%.

@@ -25,4 +25,5 @@
 |20.4| 2.5| Yksinpelin bugikorjauksia sekä pelin lopetustoiminnot.
 |21.4| 2 | Yksinpelin UI:n korjauksia
 |24.4| 4 | Korjauksia pelitoiminnoissa. Unittestit. Dokumentaation päivitys
-|Yhteensä:| 54 | tuntia
+|25.4|2| Aloitettu pelaaja vs tietokone pelin ui-luokan toteutus.
+|Yhteensä:| 56 | tuntia

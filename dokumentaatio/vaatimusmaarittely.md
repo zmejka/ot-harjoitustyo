@@ -22,7 +22,7 @@ Pelin alussa pelaaja syöttää pelinimensä sekä valitsee pelitavan. Yksinpeli
 
 Yksinpelissä pelaaja pääse suoraan valitsemaan kohteen klikkaamalla ruudukkoa. Ruudun väri muuttuu riippuen osumasta joko siniseksi (ohi) tai punaiseksi (osuma). :heavy_check_mark: Pelaaja myös näkee montako ammusta hänellä on jäljellä. :x:
 
-Pelissä tietokonetta vastaan pelaaja ensin asettaa laivat kentälle. Laivat eivät saa olla viistosti tai päällekkäin :heavy_check_mark: . Pelaajalla on kaksi karttanäkymää. Toisessa näkyy oman laivueen tilanne ja toisessa näkyy pelaajan ammunnat. Ammusten määrää ei ole rajoitettu ja peli päättyy, kun pelaaja tai tietokone upottaa kaikki vastustajan laivat.   
+Pelissä tietokonetta vastaan pelaaja ensin asettaa laivat kentälle :x:. Laivat eivät saa olla viistosti tai päällekkäin :heavy_check_mark: . Pelaajalla on kaksi karttanäkymää. Toisessa näkyy oman laivueen tilanne ja toisessa näkyy pelaajan ammunnat. Ammusten määrää ei ole rajoitettu ja peli päättyy, kun pelaaja tai tietokone upottaa kaikki vastustajan laivat. :x:  
 
 ---
 

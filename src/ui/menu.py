@@ -45,7 +45,7 @@ class Menu:
                         return "Single"
                 
                     if self.w_mid - 150 < mouse_pos[0] < self.w_mid + 250 and self.h_mid/4 + 160 < mouse_pos[1] < self.h_mid/4+335:
-                        return "PvE"
+                        return "PvC"
 
                     if self.w_mid - 150 < mouse_pos[0] < self.w_mid + 350 and self.h_mid/4 + 160 < mouse_pos[1] < self.h_mid/4+435:
                         return "Scores"

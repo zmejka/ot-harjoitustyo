@@ -4,7 +4,7 @@ from ship import Ship
 class Board:
 
     ''' Arguments:
-    board = 10x10 zero matrix.
+    board = 10x10 zero-matrix.
     visibility = if "True" all ships are visible to player, else ships are not visible to player.
     ships = list on ship objects.
     game_status = if "True" game is over. '''
@@ -42,7 +42,6 @@ class Board:
 
     def place_the_ship(self, coordinates, orientation, length):
         ''' Checking that the ship can fit in the gameboard. '''
-        print("Laiva: ",length, coordinates, orientation)
         if orientation == 1 and coordinates[0]+length < 9:
             if self.overlap_check(coordinates, orientation, length):
                 for i in range(length):
