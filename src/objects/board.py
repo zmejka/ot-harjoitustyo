@@ -133,5 +133,5 @@ class Board:
             Args:
                 ammo : number of ammunition
         '''
-        if isinstance(ammo) == int:
+        if isinstance(ammo, int):
             self.ammo = ammo
