@@ -77,7 +77,7 @@ class TestShip(unittest.TestCase):
         self.assertEqual(self.board.ammo, 100)
     
     def test_set_ammo_wrong_type_no_changes(self):
-        self.board.set_ammo(True)
+        self.board.set_ammo('Ammo')
         self.assertEqual(self.board.ammo, 40)
 
     def test_ship_class(self):

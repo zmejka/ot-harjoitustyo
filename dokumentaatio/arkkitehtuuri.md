@@ -44,9 +44,8 @@ Player luokka ei ole vielä toteutettu. Tämän vuoksi rakenne on vajavaista.
 
 ![Laivojen alustus](https://github.com/zmejka/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/vko_4_sequence.png)
 
-### Menu silmukan luonnos. Tämä luonnos ei vielä vastaa kokonaistilannetta.
+### Menu ja yksinpelin silmukkoiden luonnos. Tämä luonnos ei vielä vastaa kokonaistilannetta.
 
 
 ![Menu silmukka](https://github.com/zmejka/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/sequence_menu_loop.png)
 
-### Yksinpelin silmukka
