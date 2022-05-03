@@ -4,7 +4,7 @@ background = (151,210,203)
 
 class Menu:
     ''' Main menu for BattleShip game
-        Arguments: 
+        Arguments:
         width = screen width in pixels
         hight = screen hight in pixels '''
     def __init__(self, screen, width, hight):
@@ -15,9 +15,7 @@ class Menu:
         self.h_mid = hight/2
 
     def menu(self):
-        ''' Main menu screen'''
-
-        '''Menu subjects'''
+        ''' Main menu screen and Menu subjects. '''
         title = self.title_font.render('Laivanupotus', True, (0,51,102))
         single = self.font.render('Yksinpeli', True, (0,51,102))
         player_vs_comp = self.font.render('Pelaaja vs Tietokone', True, (0,51,102))
@@ -39,11 +37,11 @@ class Menu:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     menu = False
-                
+
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     if self.w_mid - 150 < mouse_pos[0] < self.w_mid + 150 and self.h_mid/4 + 160 < mouse_pos[1] < self.h_mid/4+230:
                         return "Single"
-                
+
                     if self.w_mid - 150 < mouse_pos[0] < self.w_mid + 250 and self.h_mid/4 + 160 < mouse_pos[1] < self.h_mid/4+335:
                         return "PvC"
 

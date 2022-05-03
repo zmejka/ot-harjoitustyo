@@ -12,6 +12,11 @@ LEFTBOTTOM = LEFTTOP + CELL*10
 class Single:
     '''UI for single game
         Arguments:
+        screen = screen object
+        width = width of the screen in pixels
+        hight = hight of the screen in pixels
+        board = board object
+        title_font = font settings
         '''
     def __init__(self, screen, width, hight, board):
         self.screen = screen
@@ -21,6 +26,7 @@ class Single:
         self.title_font = pygame.font.SysFont('alias', 70)
 
     def single_game(self):
+        ''' Initializing of the game. '''
         self.screen.fill(background)
         title = self.title_font.render('Laivanupotus', True, (0,51,102))
         title_place = title.get_rect(center=(self.width/2, self.higth/12))
@@ -31,6 +37,7 @@ class Single:
         all_sprites.draw(self.screen)
         self.screen.blit(title, title_place)
 
+        '''Game loop '''
         single_game = True
 
         while single_game:

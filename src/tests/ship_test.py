@@ -1,5 +1,5 @@
 import unittest
-from ship import Ship
+from objects.ship import Ship
 
 class TestShip(unittest.TestCase):
     def setUp(self):
@@ -25,10 +25,22 @@ class TestShip(unittest.TestCase):
     def test_set_ship_length_zero(self):
         self.ship.set_length(0)
         self.assertEqual(self.ship.length, 3)
+    
+    def test_set_ship_length_to_long(self):
+        self.ship.set_length(7)
+        self.assertEqual(self.ship.length, 3)
 
-    def test_set_ship_orientation(self):
+    def test_set_ship_orientation_horizontal(self):
         self.ship.set_orientation(0)
         self.assertEqual(self.ship.orientation, 0)
+    
+    def test_set_ship_orientation_vertical(self):
+        self.ship.set_orientation(1)
+        self.assertEqual(self.ship.orientation, 1)
+
+    def test_set_ship_orientation_wrong_value(self):
+        self.ship.set_orientation('a')
+        self.assertEqual(self.ship.orientation, 1) 
 
     def test_set_ship_status(self):
         self.ship.set_status(True)
@@ -38,5 +50,37 @@ class TestShip(unittest.TestCase):
         self.ship.set_status(False)
         self.assertEqual(self.ship.status, False)
 
+    def test_set_ship_status_wrong_value(self):
+        self.ship.set_status(5)
+        self.assertEqual(self.ship.status, False)
+
     def test_is_sunk(self):
+        self.assertEqual(self.ship.are_sunk(), False)
+
+    def test_get_hits(self):
+        self.ship.add_hit()
+        self.ship.add_hit()
+        self.assertEqual(self.ship.get_hits(), 2)
+    
+    def test_add_hits(self):
+        self.ship.add_hit()
+        self.assertEqual(self.ship.hits, 1)
+    
+    def test_ship_position_row(self):
+        coordinates = self.ship.ship_position()
+        self.assertTrue(0 <= coordinates[0] <=  9)
+    
+    def test_ship_position_column(self):
+        coordinates = self.ship.ship_position()
+        self.assertTrue(0 <= coordinates[1] <=  9)
+   
+    def test_are_sunk(self):
+        self.ship.add_hit()
+        self.ship.add_hit()
+        self.ship.add_hit()
+        self.assertEqual(self.ship.are_sunk(), True)
+
+    def test_not_sunk(self):
+        self.ship.add_hit()
+        self.ship.add_hit()
         self.assertEqual(self.ship.are_sunk(), False)

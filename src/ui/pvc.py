@@ -15,31 +15,39 @@ from sprites.destroyer_vert import DestroyerVert
 
 background = (151,210,203)
 CELL = 37
-LEFTTOP = 160
+LEFTTOP = 200
 LEFTBOTTOM = LEFTTOP + CELL*10
 
 class PvC:
     '''UI for player vs computer game
         Arguments:
+        screen = screen object
+        width = width of the screen in pixels
+        hight = hight of the screen in pixels
+        player_board = board object for player ships
+        ai_board = board object for computer
+        title_font = font settings
         '''
-    def __init__(self, screen, width, hight, board):
+    def __init__(self, screen, width, hight, player_board, ai_board):
         self.screen = screen
         self.width = width
         self.higth = hight
-        self.board = board
+        self.player_board = player_board
+        self.comp_board = ai_board
         self.title_font = pygame.font.SysFont('alias', 70)
 
     def pvc_game(self):
+        ''' Initializing of the game. '''
         self.screen.fill(background)
         title = self.title_font.render('Laivanupotus', True, (0,51,102))
         title_place = title.get_rect(center=(self.width/2, self.higth/12))
-        field_player = Field(LEFTTOP-CELL, LEFTTOP-CELL)
-        field_comp = Field(800,LEFTTOP-CELL)
+        field_comp = Field(LEFTTOP-CELL, LEFTTOP-CELL)
+        field_player = Field(LEFTBOTTOM+250,LEFTTOP-CELL)
         all_sprites = pygame.sprite.Group()
         all_sprites.add(field_player)
         all_sprites.add(field_comp)
 
-        for j in self.board.ships:
+        '''for j in self.comp_board.ships:
             name = j.get_name()
             coordinates = j.position
             orientation = j.get_orientation()
@@ -66,12 +74,14 @@ class PvC:
                 elif name == "Battleship":
                     all_sprites.add(Battleship(y_axis, x_axis))
                 else:
-                    all_sprites.add(Destroyer(y_axis, x_axis))
+                    all_sprites.add(Destroyer(y_axis, x_axis))'''
 
         pygame.display.update()
 
         all_sprites.draw(self.screen)
         self.screen.blit(title, title_place)
+
+        ''' Game loop '''
 
         pvc_game = True
 
@@ -84,20 +94,20 @@ class PvC:
                     mouse_function = pygame.mouse.get_pressed()
                     mouse_position = pygame.mouse.get_pos()
                     if mouse_function[0]:
-                        if field_player.rect.collidepoint(mouse_position):
+                        if field_comp.rect.collidepoint(mouse_position):
                             if mouse_position[0] <= LEFTTOP or mouse_position[1] <= LEFTTOP:
                                 continue
                             if mouse_position[0] >= LEFTBOTTOM or mouse_position[1] >= LEFTBOTTOM:
                                 continue
                             corner_x = (mouse_position[0]-LEFTTOP) - (mouse_position[0]-LEFTTOP)%CELL + LEFTTOP
                             corner_y = (mouse_position[1]-LEFTTOP) - (mouse_position[1]-LEFTTOP)%CELL + LEFTTOP
-                            if self.board.board[int((corner_y-LEFTTOP)/CELL)][int((corner_x - LEFTTOP)/CELL)]==0:
-                                if self.board.shot(int((corner_y-LEFTTOP)/CELL),int((corner_x - LEFTTOP)/CELL)):
+                            if self.comp_board.board[int((corner_y-LEFTTOP)/CELL)][int((corner_x - LEFTTOP)/CELL)]==0:
+                                if self.comp_board.shot(int((corner_y-LEFTTOP)/CELL),int((corner_x - LEFTTOP)/CELL)):
                                     all_sprites.add(Miss(corner_x, corner_y))
-                            elif self.board.board[int((corner_y-LEFTTOP)/CELL)][int((corner_x - LEFTTOP)/CELL)]==1:
-                                if self.board.shot(int((corner_y-LEFTTOP)/CELL),int((corner_x - LEFTTOP)/CELL)):
+                            elif self.comp_board.board[int((corner_y-LEFTTOP)/CELL)][int((corner_x - LEFTTOP)/CELL)]==1:
+                                if self.comp_board.shot(int((corner_y-LEFTTOP)/CELL),int((corner_x - LEFTTOP)/CELL)):
                                     all_sprites.add(Hit(corner_x, corner_y))
-                                    self.board.game_over()
+                                    self.comp_board.game_over()
 
                 pygame.display.update()
                 
