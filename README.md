@@ -23,6 +23,7 @@ Pelissä tietokonetta vasten tavoittena upottaa tietokoneen laivat ennen kuin ti
 ### Julkaisu
 
 [Release 1](https://github.com/zmejka/ot-harjoitustyo/releases/tag/viikko5)
+
 [Release 2](https://github.com/zmejka/ot-harjoitustyo/releases/tag/viikko6)
 
 ### Asennus
