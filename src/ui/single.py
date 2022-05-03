@@ -12,11 +12,11 @@ LEFTBOTTOM = LEFTTOP + CELL*10
 class Single:
     '''UI for single game
         Arguments:
-        screen = screen object
-        width = width of the screen in pixels
-        hight = hight of the screen in pixels
-        board = board object
-        title_font = font settings
+        screen : screen object
+        width : width of the screen in pixels
+        hight : hight of the screen in pixels
+        board : board object
+        title_font : font settings
         '''
     def __init__(self, screen, width, hight, board):
         self.screen = screen

@@ -1,5 +1,5 @@
 import pygame
-from image import image
+from assets.image import image
 
 class DestroyerVert(pygame.sprite.Sprite):
     def __init__(self, x_axis, y_axis):

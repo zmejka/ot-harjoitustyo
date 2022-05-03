@@ -2,13 +2,13 @@
 ----
 ## Rakenne
 
-Tässä vaiheessa sovelluksen rakenne koostuu luokista main, ship ja board. Lisäksi sovelluksessa on 2 käyttöliittymäluokkaa sekä 13 sprites luokkaa.
+Sovelluksen rakenne koostuu luokista main, ship ja board. Lisäksi sovelluksessa on 3 käyttöliittymäluokkaa menu, single ja pvc  sekä 13 sprites-luokkaa. Luokat on jaettu kansioihin ui, objects ja sprites. Kansiossa src sijaitsee sovelluslogiikka, kansiossa ui käyttöliittymät, objects kansiossa luokat ship ja board ja kansiossa sprites sprite-luokat. Kansiossa assets sijaitsevat ui tarvitsemat kuvatiedostot sekä image-luokka.
 
 ![Rakenne](https://github.com/zmejka/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/rakenne_kuva.png)
 ----
 ## Käyttöliittymä
 
-Käyttöliittymäluokat ovat menu ja single. Menu luokkaa sisältää aloitusvalikon, josta voi valita haluttu peli tai lopettaa sovelluksen käyttämistä. 
+Käyttöliittymäluokat ovat menu, single ja pvc. Menu luokkaa sisältää aloitusvalikon, josta voi valita haluttu peli tai lopettaa sovelluksen käyttämistä.
 
 ----
 ## Sovelluslogiikka
@@ -24,15 +24,15 @@ Player luokka ei ole vielä toteutettu. Tämän vuoksi rakenne on vajavaista.
           visible
           ships
           game_status
-          initialize_ships()
-          game_over()
+          ammo
       }
       class Ship{
           name
           length
           orientation
           status
-          is_sunk()
+          position
+          hits
       }
 
 ```
@@ -40,8 +40,13 @@ Player luokka ei ole vielä toteutettu. Tämän vuoksi rakenne on vajavaista.
 ----
 ## Päätoiminnallisuudet
 
-Sequence-kaavio on tämän hetken tilannetta kuvaava kaavio. 
-
 ### Laivojen alustus
 
-![Sequence](https://github.com/zmejka/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/vko_4_sequence.png)
+![Laivojen alustus](https://github.com/zmejka/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/vko_4_sequence.png)
+
+### Menu silmukan luonnos. Tämä luonnos ei vielä vastaa kokonaistilannetta.
+
+
+![Menu silmukka](https://github.com/zmejka/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/sequence_menu_loop.png)
+
+### Yksinpelin silmukka

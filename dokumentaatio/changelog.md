@@ -13,3 +13,8 @@
 - Luotu yksinpelin käyttöliittymä. Pelissä on 40 ammusta. Peli päätyy, kun kaikki laivat on ammuttu tai ammukset loppuvat. Toiminnallisuudesta puuttuu ilmoitukset kuten laiva (nimi) on uppunut tai kuinka monta ammusta on jäljellä.
 - Peli tietokonetta vasten on aloitettu. Tässä vaiheessa pelissä tulostuu kentät sekä kentälle arvotut laivat. Laivoja pystyy ampumaan samalla tavoin kuin yksinpelissä. Seuraavaksi laivojen arpominen korvataan laivojen asettamisella pelaajan toimeesta sekä tietokoneen luomaan kenttään ampumiset.
 - Testaus: testauksesta on poistettu käyttöliittymien testaus. Ship luokan testauksessa puuttuu random-koordinattien testaus. Testauksen kattavuus on vasta 44%.
+
+### Viikko 6:
+- Aloitettu pelaaja vs tietokone pelin toteutus. Tietokonetta vastaava kenttän toiminnallisuudet kuten laivojen sijoitus ja pelaajan ammunta toimivat samalla tavoin kuin yksinpelissä. Pelissä on 100 ammusta, eli ammusten määrä ei ole rajoitettu. Seuraavaksi toteutetaan pelaajan laivojen alustus ja tietokoneen ammunta. 
+- Lisätty toiminnallisuus yksittäisten laivojen uppoamista seuraava toiminnallisuus
+- Testaus: päivitetty/lisätty testit. Testauksen kattavuus 64%

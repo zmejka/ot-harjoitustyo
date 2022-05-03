@@ -26,4 +26,9 @@
 |21.4| 2 | Yksinpelin UI:n korjauksia
 |24.4| 4 | Korjauksia pelitoiminnoissa. Unittestit. Dokumentaation päivitys
 |25.4|2| Aloitettu pelaaja vs tietokone pelin ui-luokan toteutus.
-|Yhteensä:| 56 | tuntia
+|29.4|2.5| Pelaaja vs tietokone toteutus
+|30.4| 1.5| PvC pelin bugikorjauksia
+|1.5|1.5| Unittestit ja pieniä korjauksia
+|2.5|2.5| Dogstring dokumentointi, laivojen upottamis toiminnallisuus, koodin siistiminen
+|3.5|1.5| Dokumentaation päivitys, pieniä korjauksia
+|Yhteensä:| 65.5 | tuntia

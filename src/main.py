@@ -11,8 +11,8 @@ FPS = 50
 
 def main():
     ''' Arguments:
-    screen_height = hight of the screen in pixels.
-    screen_width = width of the screen in pixels
+    screen_height : hight of the screen in pixels.
+    screen_width : width of the screen in pixels
     - Initialize game window
     - Initialize sprites
     - Game loop:

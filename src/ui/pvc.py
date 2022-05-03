@@ -21,12 +21,12 @@ LEFTBOTTOM = LEFTTOP + CELL*10
 class PvC:
     '''UI for player vs computer game
         Arguments:
-        screen = screen object
-        width = width of the screen in pixels
-        hight = hight of the screen in pixels
-        player_board = board object for player ships
-        ai_board = board object for computer
-        title_font = font settings
+        screen : screen object
+        width : width of the screen in pixels
+        hight : hight of the screen in pixels
+        player_board : board object for player ships
+        ai_board : board object for computer
+        title_font : font settings
         '''
     def __init__(self, screen, width, hight, player_board, ai_board):
         self.screen = screen
