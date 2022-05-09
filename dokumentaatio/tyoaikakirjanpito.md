@@ -31,4 +31,8 @@
 |1.5|1.5| Unittestit ja pieniä korjauksia
 |2.5|2.5| Dogstring dokumentointi, laivojen upottamis toiminnallisuus, koodin siistiminen
 |3.5|1.5| Dokumentaation päivitys, pieniä korjauksia
-|Yhteensä:| 65.5 | tuntia
+|4.5|1.5| PvC pelin tietokeneen kentän toiminnallisuus. Pelaajakentän laivojen alustus
+|6.5|2| Tietokonevuorolla tapahtuvan ampumisen toiminnallisuuden toteutus. Virhekorjaukset.
+|7.5|3| Jatkettu tietokonevuorolla tapahtuvan ampumisen toiminnallisuuden toteutusta. Siistitty koodia
+|8.5|4| Vuoropelin ja pelin lopetuksen toiminnallisuudet
+|Yhteensä:| 76 | tuntia

@@ -1,4 +1,5 @@
 import random
+import itertools
 from objects.ship import Ship
 
 class Board:
@@ -17,6 +18,9 @@ class Board:
         self.ships = []
         self.game_status = False
         self.ammo = 40
+        self.coordinates = []
+        for row, col in itertools.product(range(10), range(10)):
+            self.coordinates.append((row,col))
 
     def create_ships(self):
         ''' Creating 5 types of ships with random oriantation and adding to ships-list.
@@ -102,7 +106,14 @@ class Board:
                 self.ship_check(hit)
             self.ammo = self.ammo - 1
             return True
+        self.game_status = True
         return False
+
+    def comp_shot(self):
+        random_coordinates = random.choice(self.coordinates)
+        self.shot(random_coordinates[0], random_coordinates[1])
+        self.coordinates.remove(random_coordinates)
+        return random_coordinates
 
     def ship_check(self, coordinates):
         '''If pair of coordinates in ship's list, add hit.
@@ -110,23 +121,26 @@ class Board:
                 coordinates : pair of numbers. Both of coordinates are random number between 0-9
         '''
         if self.board[coordinates[0]][coordinates[1]] == 3:
-            for i in self.ships:
-                if coordinates in i.position:
-                    i.add_hit()
+            for ship in self.ships:
+                if coordinates in ship.position:
+                    ship.add_hit()
 
-    def game_over(self):
+    def check_game_over(self):
         ''' Checking for game status. If all 5 ships are sunk, set game status to
             True.
             Returns:
                 game_status.'''
         counter = 0
-        for i in self.ships:
-            if i.are_sunk():
+        for ship in self.ships:
+            if ship.are_sunk():
                 counter = counter + 1
         if counter == 5:
-            print("Peli on päättynyt!!")
             self.game_status = True
-        return self.game_status
+
+    def game_over(self):
+        self.check_game_over()
+        if self.game_status:
+            return True
 
     def set_ammo(self, ammo):
         ''' For PvC game: Set number of ammos to given number.
@@ -135,3 +149,8 @@ class Board:
         '''
         if isinstance(ammo, int):
             self.ammo = ammo
+
+    def print_board(self):
+        ''' Muista poistaa!!!!!'''
+        for i in self.board:
+            print(i)

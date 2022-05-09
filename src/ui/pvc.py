@@ -1,3 +1,4 @@
+from pyparsing import empty
 import pygame
 from sprites.field import Field
 from sprites.hit import Hit
@@ -12,11 +13,14 @@ from sprites.submarine import Submarine
 from sprites.submarine_vert import SubmarineVert
 from sprites.destroyer import Destroyer
 from sprites.destroyer_vert import DestroyerVert
+from objects.player import Player
+from objects.ship import Ship
 
 background = (151,210,203)
 CELL = 37
-LEFTTOP = 200
-LEFTBOTTOM = LEFTTOP + CELL*10
+LTOP = 200
+RTOP = LTOP+CELL*10+250
+FPS = 60
 
 class PvC:
     '''UI for player vs computer game
@@ -35,24 +39,86 @@ class PvC:
         self.player_board = player_board
         self.comp_board = ai_board
         self.title_font = pygame.font.SysFont('alias', 70)
+        self.font = pygame.font.SysFont('alias', 40)
+        self.player = Player("Pelaaja", True)
+        self.computer = Player("AI", False)
+        self.game = True
 
-    def pvc_game(self):
+    def initialize(self):
         ''' Initializing of the game. '''
         self.screen.fill(background)
         title = self.title_font.render('Laivanupotus', True, (0,51,102))
+        pfield_title = self.font.render('Oma kenttä', True, (0,51,102))
+        cfield_title = self.font.render('Vastustajan kenttä', True, (0,51,102))
         title_place = title.get_rect(center=(self.width/2, self.higth/12))
-        field_comp = Field(LEFTTOP-CELL, LEFTTOP-CELL)
-        field_player = Field(LEFTBOTTOM+250,LEFTTOP-CELL)
+        pfield_place = pfield_title.get_rect(center=(RTOP+165, self.higth/5))
+        cfield_place = cfield_title.get_rect(center=(LTOP+165, self.higth/5))
+        field_comp = Field(LTOP-CELL, LTOP-CELL)
+        field_player = Field(RTOP-CELL,LTOP-CELL)
         all_sprites = pygame.sprite.Group()
         all_sprites.add(field_player)
         all_sprites.add(field_comp)
+        all_sprites.draw(self.screen)
+        self.screen.blit(title, title_place)
+        self.screen.blit(pfield_title, pfield_place)
+        self.screen.blit(cfield_title, cfield_place)
+        #self.draw_ships(all_sprites)
+        pygame.display.update()
+        self.place_ships(field_player, all_sprites)
+        self.pvc_game(all_sprites, field_comp, field_player)
 
-        '''for j in self.comp_board.ships:
+    def place_ships(self, field_player, all_sprites):
+        ships = [('Carrier', 5), ('Battleship',4), ('Cruiser',3), ('Submarine',3), ('Destroyer',2)]
+        clock = pygame.time.Clock()
+        clock.tick(60)
+        running = True
+        while running:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    running = False
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    mouse_func = pygame.mouse.get_pressed()
+                    mouse_pos = pygame.mouse.get_pos()
+                    if mouse_func[0]:
+                        if field_player.rect.collidepoint(mouse_pos):
+                            self.player_ship(mouse_pos, ships, all_sprites, mouse_func)
+                    if mouse_func[2]:
+                        if field_player.rect.collidepoint(mouse_pos):
+                            self.player_ship(mouse_pos, ships, all_sprites, mouse_func)
+                    all_sprites.draw(self.screen)
+                pygame.display.flip()
+                if not ships:
+                    print('kaikki laivat on kentällä, voi aloittaa ampumisen')
+                    running = False
+    
+    def pvc_game(self, all_sprites, field_comp, field_player):
+        clock = pygame.time.Clock()
+        clock.tick(60)
+        while self.game:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    self.game = False
+                if self.computer.get_status():
+                    self.comp_event(all_sprites)
+                    self.computer.set_status(False)
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    mouse_function = pygame.mouse.get_pressed()
+                    mouse_position = pygame.mouse.get_pos()
+                    if mouse_function[0]:
+                        if field_comp.rect.collidepoint(mouse_position):
+                            self.player_event(mouse_position, all_sprites)
+                            self.computer.set_status(True)
+                            pygame.time.delay(50)
+            all_sprites.draw(self.screen)
+            pygame.display.flip()
+    
+    '''def draw_ships(self, all_sprites):
+        for j in self.player_board.ships:
             name = j.get_name()
             coordinates = j.position
             orientation = j.get_orientation()
-            x_axis = LEFTTOP + coordinates[0]*CELL
-            y_axis = LEFTTOP + coordinates[1]*CELL
+            x_axis = LTOP + coordinates[0][0]*CELL
+            y_axis = RTOP + coordinates[0][1]*CELL
             if orientation == 1:
                 if name == "Submarine":
                     all_sprites.add(SubmarineVert(y_axis, x_axis))
@@ -76,39 +142,75 @@ class PvC:
                 else:
                     all_sprites.add(Destroyer(y_axis, x_axis))'''
 
-        pygame.display.update()
+    def player_event(self, mouse_position, all_sprites):
+        if mouse_position[0] <= LTOP or mouse_position[1] <= LTOP:
+            return
+        if mouse_position[0] >= RTOP-250 or mouse_position[1] >= RTOP-250:
+            return
+        corner_x = (mouse_position[0]-LTOP) - (mouse_position[0]-LTOP)%CELL + LTOP
+        corner_y = (mouse_position[1]-LTOP) - (mouse_position[1]-LTOP)%CELL + LTOP
+        if self.comp_board.board[int((corner_y-LTOP)/CELL)][int((corner_x - LTOP)/CELL)]==0:
+            if self.comp_board.shot(int((corner_y-LTOP)/CELL),int((corner_x - LTOP)/CELL)):
+                all_sprites.add(Miss(corner_x, corner_y))
+        elif self.comp_board.board[int((corner_y-LTOP)/CELL)][int((corner_x - LTOP)/CELL)]==1:
+            if self.comp_board.shot(int((corner_y-LTOP)/CELL),int((corner_x - LTOP)/CELL)):
+                all_sprites.add(Hit(corner_x, corner_y))
+                if self.comp_board.game_over():
+                    print("peli loppui!")
+                    pygame.time.delay(1000)
+                    self.game = False
 
-        all_sprites.draw(self.screen)
-        self.screen.blit(title, title_place)
+    def comp_event(self, all_sprites):
+        coordinates = self.player_board.comp_shot()
+        corner_x = coordinates[0]*CELL + LTOP
+        corner_y = coordinates[1]*CELL + RTOP
+        if self.player_board.board[coordinates[0]][coordinates[1]]==2:
+            all_sprites.add(Miss(corner_y, corner_x))
+        elif self.player_board.board[coordinates[0]][coordinates[1]]==3:
+            all_sprites.add(Hit(corner_y, corner_x))
+            if self.player_board.game_over():
+                print("peli loppui!!")
+                pygame.time.delay(1000)
+                self.game = False
 
-        ''' Game loop '''
-
-        pvc_game = True
-
-        while pvc_game:
-            for i in pygame.event.get():
-                if i.type == pygame.QUIT:
-                    pvc_game = False
-
-                if i.type == pygame.MOUSEBUTTONDOWN:
-                    mouse_function = pygame.mouse.get_pressed()
-                    mouse_position = pygame.mouse.get_pos()
-                    if mouse_function[0]:
-                        if field_comp.rect.collidepoint(mouse_position):
-                            if mouse_position[0] <= LEFTTOP or mouse_position[1] <= LEFTTOP:
-                                continue
-                            if mouse_position[0] >= LEFTBOTTOM or mouse_position[1] >= LEFTBOTTOM:
-                                continue
-                            corner_x = (mouse_position[0]-LEFTTOP) - (mouse_position[0]-LEFTTOP)%CELL + LEFTTOP
-                            corner_y = (mouse_position[1]-LEFTTOP) - (mouse_position[1]-LEFTTOP)%CELL + LEFTTOP
-                            if self.comp_board.board[int((corner_y-LEFTTOP)/CELL)][int((corner_x - LEFTTOP)/CELL)]==0:
-                                if self.comp_board.shot(int((corner_y-LEFTTOP)/CELL),int((corner_x - LEFTTOP)/CELL)):
-                                    all_sprites.add(Miss(corner_x, corner_y))
-                            elif self.comp_board.board[int((corner_y-LEFTTOP)/CELL)][int((corner_x - LEFTTOP)/CELL)]==1:
-                                if self.comp_board.shot(int((corner_y-LEFTTOP)/CELL),int((corner_x - LEFTTOP)/CELL)):
-                                    all_sprites.add(Hit(corner_x, corner_y))
-                                    self.comp_board.game_over()
-
-                pygame.display.update()
-                
-                all_sprites.draw(self.screen)
+    def player_ship(self, mouse_pos, ships, all_sprites, mouse_func):
+        x_axis = (mouse_pos[0]-RTOP) - (mouse_pos[0]-RTOP)%CELL + RTOP
+        y_axis = (mouse_pos[1] -LTOP) - (mouse_pos[1]-LTOP)%CELL + LTOP
+        row = int((mouse_pos[1]-LTOP)/CELL)
+        col = int((mouse_pos[0]-RTOP)/CELL)
+        coordinates = (row, col)
+        name = ships[0][0]
+        print(name)
+        length = ships[0][1]
+        if mouse_func[0]:
+            orientation = 0
+        if mouse_func[2]:
+            orientation = 1
+        ship = Ship(name, length, orientation)
+        self.player_board.ships.append(ship)
+        if self.player_board.place_the_ship(ship, coordinates, orientation, length):
+            if orientation == 0:
+                if name=='Carrier':
+                    all_sprites.add(Carrier(x_axis, y_axis))
+                elif name=='Battleship':
+                    all_sprites.add(Battleship(x_axis, y_axis))
+                elif name=='Cruiser':
+                    all_sprites.add(Cruiser(x_axis, y_axis))
+                elif name=='Submarine':
+                    all_sprites.add(Submarine(x_axis, y_axis))
+                else:
+                    all_sprites.add(Destroyer(x_axis, y_axis))
+            if orientation == 1:
+                if name=='Carrier':
+                    all_sprites.add(CarrierVert(x_axis, y_axis))
+                elif name=='Battleship':
+                    all_sprites.add(BattleshipVert(x_axis, y_axis))
+                elif name=='Cruiser':
+                    all_sprites.add(CruiserVert(x_axis, y_axis))
+                elif name=='Submarine':
+                    all_sprites.add(SubmarineVert(x_axis, y_axis))
+                else:
+                    all_sprites.add(DestroyerVert(x_axis, y_axis))    
+            ships.pop(0)
+            pygame.display.flip()
+            

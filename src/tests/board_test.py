@@ -104,7 +104,7 @@ class TestShip(unittest.TestCase):
         self.board.shot(2,3)
         self.assertEqual(self.board.ammo, 38)
 
-    def test_game_over(self):
+    def test_check_game_over(self):
         ship1 = Ship('1', 0, 3)
         ship2 = Ship('2', 0, 3)
         ship3 = Ship('3', 0, 3)
@@ -116,4 +116,5 @@ class TestShip(unittest.TestCase):
         self.board.ships.append(self.ship)
         for i in self.board.ships:
             i.set_status(True)
-        self.assertEqual(self.board.game_over(), True)
+        self.board.check_game_over()
+        self.assertEqual(self.board.game_status, True)
