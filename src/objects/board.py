@@ -5,16 +5,14 @@ from objects.ship import Ship
 class Board:
     ''' Arguments:
         board : 10x10 zero-matrix.
-        visibility : if "False" all ships are not visible to player,
-                    else ships are visible to player.
         ships : list on ship objects.
         game_status : if "True" game is over.
         ammo : number of ammos. In single game - 40. In PvC game - 100.
+        coordinates : list of tuples (row, column) of the all cells in matrix
     '''
 
     def __init__(self):
         self.board = [[0]*10 for i in range(10)]
-        self.visible = False
         self.ships = []
         self.game_status = False
         self.ammo = 40
@@ -23,7 +21,8 @@ class Board:
             self.coordinates.append((row,col))
 
     def create_ships(self):
-        ''' Creating 5 types of ships with random oriantation and adding to ships-list.
+        ''' Creating 5 types of ships with random orientation and
+            adding to ships-list.
             Used in single game and PvC game to create computer ships.
             Ships are added to the ships-list.
         '''
@@ -34,7 +33,9 @@ class Board:
         self.ships.append(Ship("Destroyer", 2, int(random.randint(0,1))))
 
     def randomize_ships(self):
-        ''' Randomize coordinates for ships and try to place ship on board. '''
+        ''' Randomily draw the coordinates for each ship in the list
+            and try to place ship on board.
+        '''
         for i in self.ships:
             location = False
             while not location:
@@ -110,6 +111,11 @@ class Board:
         return False
 
     def comp_shot(self):
+        ''' Randomly draw coordinates from the list of coordinates.
+            Shoot at the given location and remove the coordinates from the list.
+            Returns:
+                pair of coordinates (row, column)
+        '''
         random_coordinates = random.choice(self.coordinates)
         self.shot(random_coordinates[0], random_coordinates[1])
         self.coordinates.remove(random_coordinates)
@@ -118,7 +124,8 @@ class Board:
     def ship_check(self, coordinates):
         '''If pair of coordinates in ship's list, add hit.
             Args:
-                coordinates : pair of numbers. Both of coordinates are random number between 0-9
+                coordinates : pair of numbers. Both of coordinates are random number
+                between 0-9.
         '''
         if self.board[coordinates[0]][coordinates[1]] == 3:
             for ship in self.ships:
@@ -128,6 +135,8 @@ class Board:
     def check_game_over(self):
         ''' Checking for game status. If all 5 ships are sunk, set game status to
             True.
+            Args:
+                counter for sunken ships. 0 at start.
             Returns:
                 game_status.'''
         counter = 0
@@ -138,9 +147,15 @@ class Board:
             self.game_status = True
 
     def game_over(self):
+        ''' Checkingif game is over.
+            Returns:
+                True, if game is over.
+                False, if game continue.
+        '''
         self.check_game_over()
         if self.game_status:
             return True
+        return False
 
     def set_ammo(self, ammo):
         ''' For PvC game: Set number of ammos to given number.
@@ -151,6 +166,6 @@ class Board:
             self.ammo = ammo
 
     def print_board(self):
-        ''' Muista poistaa!!!!!'''
+        ''' Muista poistaa!!!!! Testaus printti'''
         for i in self.board:
             print(i)

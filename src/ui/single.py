@@ -1,3 +1,11 @@
+''' UI class for Single Game.
+    Arguments:
+        background : color settings
+        CELL : edge of cell in pixels
+        LTOP : constant for left corner
+        RTOP : constant for right corner
+'''
+
 import pygame
 from sprites.field import Field
 from sprites.hit import Hit
@@ -15,7 +23,9 @@ class Single:
         width : width of the screen in pixels
         hight : hight of the screen in pixels
         board : board object
-        title_font : font settings
+        title_font : font settings for title
+        font : font settings for other text
+        game : game status. True, if game continue
         '''
     def __init__(self, screen, width, hight, board):
         self.screen = screen
@@ -27,21 +37,28 @@ class Single:
         self.game = True
 
     def single_game(self):
-        ''' Initializing of the game. '''
+        ''' Initializing of the game. 
+            Set screen and background. Initialize sprite-list.
+            Create game field. 
+        '''
         self.screen.fill(background)
         title = self.title_font.render('Laivanupotus', True, (0,51,102))
         title_place = title.get_rect(center=(self.width/2, self.higth/12))
-        cfield_title = self.font.render('Vastustajan kenttä', True, (0,51,102))
-        cfield_place = cfield_title.get_rect(center=(LTOP+165, self.higth/5))
+        field_title = self.font.render('Vastustajan kenttä', True, (0,51,102))
+        field_place = field_title.get_rect(center=(LTOP+165, self.higth/5))
         game_field = Field(LTOP-CELL, LTOP-CELL)
         all_sprites = pygame.sprite.Group()
         pygame.display.update()
         all_sprites.add(game_field)
         all_sprites.draw(self.screen)
         self.screen.blit(title, title_place)
-        self.screen.blit(cfield_title, cfield_place)
+        self.screen.blit(field_title, field_place)
 
-        '''Game loop '''
+        ''' Game loop.
+            Game continue until ammunition end or player sink all ships.
+            On mouse left button click, shot on the board and check game status.
+        '''
+
         clock = pygame.time.Clock()
         clock.tick(60)        
         while self.game:
@@ -58,6 +75,11 @@ class Single:
             all_sprites.draw(self.screen)
 
     def mouse_event(self, mouse_position, all_sprites):
+        ''' Functionality after pressing the left mouse button.
+            Args:
+                mouse_position : pair of coordinates
+                all_sprites : list of sprites
+        '''
         if mouse_position[0] <= LTOP or mouse_position[1] <= LTOP:
             return
         if mouse_position[0] >= RTOP or mouse_position[1] >= RTOP:
@@ -68,15 +90,32 @@ class Single:
             if self.board.shot(int((corner_y-LTOP)/CELL),int((corner_x - LTOP)/CELL)):
                 all_sprites.add(Miss(corner_x, corner_y))
             else:
-                print("ammukset loppui")
+                announcement = 'Peli on päättynyt! Ammukset loppuivat!'
+                self.announcement(announcement)
+                pygame.display.update()
+                pygame.time.delay(500)
+                self.game = False
         elif self.board.board[int((corner_y-LTOP)/CELL)][int((corner_x - LTOP)/CELL)]==1:
             if self.board.shot(int((corner_y-LTOP)/CELL),int((corner_x - LTOP)/CELL)):
                 all_sprites.add(Hit(corner_x, corner_y))
                 if self.board.game_over():
-                    print("peli loppui")
-                    self.game = False
-
+                    announcement = 'Kaikki laivat on upotettu! Peli on päättynyt!'
+                    self.announcement(announcement)
             else:
-                print("ammukset loppui")
+                announcement = 'Peli on päättynyt! Ammukset loppuivat!'
+                self.announcement(announcement)
+                pygame.display.update()
+                pygame.time.delay(500)
+                self.game = False
         else:
-            print("Tähän kenttään on jo ammuttu!")
+            announcement = 'Tähän kenttään on jo ammuttu!'
+            self.announcement(announcement)
+
+    def announcement(self, text):
+        announcement = self.title_font.render(text, True, (0,51,102))
+        announcement_place = announcement.get_rect(center=(self.width/2, self.higth-100))
+        self.screen.blit(announcement, announcement_place)
+        pygame.display.update()
+        pygame.time.delay(800)
+        pygame.draw.rect(self.screen, background, [self.width/8, self.higth-200, 1000, 200])
+        pygame.display.update()

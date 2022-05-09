@@ -39,6 +39,7 @@ class PvC:
         self.player_board = player_board
         self.comp_board = ai_board
         self.title_font = pygame.font.SysFont('alias', 70)
+        self.announcement_font = pygame.font.SysFont('alias', 50)
         self.font = pygame.font.SysFont('alias', 40)
         self.player = Player("Pelaaja", True)
         self.computer = Player("AI", False)
@@ -88,7 +89,8 @@ class PvC:
                     all_sprites.draw(self.screen)
                 pygame.display.flip()
                 if not ships:
-                    print('kaikki laivat on kentällä, voi aloittaa ampumisen')
+                    announcement = 'Kaikki pelaajan laivat on kentällä! Peli on alkanut!'
+                    self.announcement(announcement)
                     running = False
     
     def pvc_game(self, all_sprites, field_comp, field_player):
@@ -111,36 +113,6 @@ class PvC:
                             pygame.time.delay(50)
             all_sprites.draw(self.screen)
             pygame.display.flip()
-    
-    '''def draw_ships(self, all_sprites):
-        for j in self.player_board.ships:
-            name = j.get_name()
-            coordinates = j.position
-            orientation = j.get_orientation()
-            x_axis = LTOP + coordinates[0][0]*CELL
-            y_axis = RTOP + coordinates[0][1]*CELL
-            if orientation == 1:
-                if name == "Submarine":
-                    all_sprites.add(SubmarineVert(y_axis, x_axis))
-                elif name == "Carrier":
-                    all_sprites.add(CarrierVert(y_axis, x_axis))
-                elif name == "Cruiser":
-                    all_sprites.add(CruiserVert(y_axis, x_axis))
-                elif name == "Battleship":
-                    all_sprites.add(BattleshipVert(y_axis, x_axis))
-                else:
-                    all_sprites.add(DestroyerVert(y_axis, x_axis))
-            else:
-                if name == "Submarine":
-                    all_sprites.add(Submarine(y_axis, x_axis))
-                elif name == "Carrier":
-                    all_sprites.add(Carrier(y_axis, x_axis))
-                elif name == "Cruiser":
-                    all_sprites.add(Cruiser(y_axis, x_axis))
-                elif name == "Battleship":
-                    all_sprites.add(Battleship(y_axis, x_axis))
-                else:
-                    all_sprites.add(Destroyer(y_axis, x_axis))'''
 
     def player_event(self, mouse_position, all_sprites):
         if mouse_position[0] <= LTOP or mouse_position[1] <= LTOP:
@@ -156,9 +128,12 @@ class PvC:
             if self.comp_board.shot(int((corner_y-LTOP)/CELL),int((corner_x - LTOP)/CELL)):
                 all_sprites.add(Hit(corner_x, corner_y))
                 if self.comp_board.game_over():
-                    print("peli loppui!")
-                    pygame.time.delay(1000)
+                    announcement = 'Kaikki vastustajan laivat on upotettu! Peli on päättynyt!'
+                    self.announcement(announcement)
                     self.game = False
+        else:
+            announcement = 'Tähän kenttään on jo ammuttu!'
+            self.announcement(announcement)
 
     def comp_event(self, all_sprites):
         coordinates = self.player_board.comp_shot()
@@ -169,8 +144,8 @@ class PvC:
         elif self.player_board.board[coordinates[0]][coordinates[1]]==3:
             all_sprites.add(Hit(corner_y, corner_x))
             if self.player_board.game_over():
-                print("peli loppui!!")
-                pygame.time.delay(1000)
+                announcement = 'Kaikki pelaajan laivat on upotettu! Peli on päättynyt!'
+                self.announcement(announcement)
                 self.game = False
 
     def player_ship(self, mouse_pos, ships, all_sprites, mouse_func):
@@ -212,5 +187,15 @@ class PvC:
                 else:
                     all_sprites.add(DestroyerVert(x_axis, y_axis))    
             ships.pop(0)
+            self.player_board.print_board()
+            print("______________________")
             pygame.display.flip()
-            
+
+    def announcement(self, text):
+        announcement = self.announcement_font.render(text, True, (0,51,102))
+        announcement_place = announcement.get_rect(center=(self.width/2, self.higth-100))
+        self.screen.blit(announcement, announcement_place)
+        pygame.display.update()
+        pygame.time.delay(1000)
+        pygame.draw.rect(self.screen, background, [self.width/8, self.higth-150, 1000, 200])
+        pygame.display.update()

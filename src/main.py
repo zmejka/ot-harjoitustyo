@@ -49,8 +49,6 @@ def start_single(screen):
 def start_pvc(screen):
     player_board = Board()
     player_board.set_ammo(100)
-    #player_board.create_ships()
-    #player_board.randomize_ships()
     comp_board = Board()
     comp_board.set_ammo(100)
     comp_board.create_ships()
