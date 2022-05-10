@@ -63,7 +63,6 @@ class PvC:
         self.screen.blit(title, title_place)
         self.screen.blit(pfield_title, pfield_place)
         self.screen.blit(cfield_title, cfield_place)
-        #self.draw_ships(all_sprites)
         pygame.display.update()
         self.place_ships(field_player, all_sprites)
         self.pvc_game(all_sprites, field_comp, field_player)
@@ -149,6 +148,8 @@ class PvC:
                 self.game = False
 
     def player_ship(self, mouse_pos, ships, all_sprites, mouse_func):
+        if mouse_pos[0] <= RTOP or mouse_pos[1] <= LTOP:
+            return
         x_axis = (mouse_pos[0]-RTOP) - (mouse_pos[0]-RTOP)%CELL + RTOP
         y_axis = (mouse_pos[1] -LTOP) - (mouse_pos[1]-LTOP)%CELL + LTOP
         row = int((mouse_pos[1]-LTOP)/CELL)

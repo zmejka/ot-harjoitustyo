@@ -53,14 +53,15 @@ class Board:
                 True, if ship fit in the gameboard
                 False, if ship do not fit in the gameboard
         '''
-        if orientation == 1 and coordinates[0]+length < 9:
+        if orientation == 1 and coordinates[0]+length < 11:
             if self.overlap_check(coordinates, orientation, length):
                 for i in range(length):
                     self.board[coordinates[0]+i][coordinates[1]]=1
                     place = (coordinates[0]+i, coordinates[1])
                     ship.position.append(place)
+
                 return True
-        if orientation == 0 and coordinates[1]+length < 9:
+        if orientation == 0 and coordinates[1]+length < 11:
             if self.overlap_check(coordinates, orientation, length):
                 for i in range(length):
                     self.board[coordinates[0]][coordinates[1]+i]=1
@@ -164,6 +165,9 @@ class Board:
         '''
         if isinstance(ammo, int):
             self.ammo = ammo
+    
+    def get_ammo(self):
+        return self.ammo
 
     def print_board(self):
         ''' Muista poistaa!!!!! Testaus printti'''

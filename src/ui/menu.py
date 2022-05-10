@@ -20,7 +20,7 @@ class Menu:
         single = self.font.render('Yksinpeli', True, (0,51,102))
         player_vs_comp = self.font.render('Pelaaja vs Tietokone', True, (0,51,102))
         scores = self.font.render('Tulokset', True, (0,51,102))
-        quit = self.font.render('Lopeta pelin', True, (0,51,102))
+        quit = self.font.render('Lopeta peli', True, (0,51,102))
 
         '''Text on screen'''
         title_place = title.get_rect(center=(self.w_mid, self.h_mid/6))
