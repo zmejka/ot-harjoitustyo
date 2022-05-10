@@ -18,3 +18,9 @@
 - Aloitettu pelaaja vs tietokone pelin toteutus. Tietokonetta vastaava kenttän toiminnallisuudet kuten laivojen sijoitus ja pelaajan ammunta toimivat samalla tavoin kuin yksinpelissä. Pelissä on 100 ammusta, eli ammusten määrä ei ole rajoitettu. Seuraavaksi toteutetaan pelaajan laivojen alustus ja tietokoneen ammunta. 
 - Lisätty toiminnallisuus yksittäisten laivojen uppoamista seuraava toiminnallisuus
 - Testaus: päivitetty/lisätty testit. Testauksen kattavuus 64%
+
+### Viikko 7:
+- Toteutettu pelaaja vs tietokone osa.
+- Päivitetty molempien pelien käyttöliittymät
+- Testaus:
+

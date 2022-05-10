@@ -36,4 +36,5 @@
 |7.5|3| Jatkettu tietokonevuorolla tapahtuvan ampumisen toiminnallisuuden toteutusta. Siistitty koodia
 |8.5|4| Vuoropelin ja pelin lopetuksen toiminnallisuudet
 |9.5|6| Yksinpelin ui:n päivitys. Dokumentoinnin päivitys (dogstrings). PvC pelin laivojen asettamisen toiminnallisuuden toteutus.
-|Yhteensä:| 82 | tuntia
+|10.5|3| Dogstring:t päivitetty. Virhekorjaukset. Käyttöohjeen kirjoittamista.
+|Yhteensä:| 91 | tuntia

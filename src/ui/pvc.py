@@ -1,4 +1,13 @@
-from pyparsing import empty
+''' UI class for Player vs Computer Game.
+    Arguments:
+        background : color settings
+        text_color : color settings
+        CELL : edge of cell in pixels
+        LTOP : constant for left corner x coordinate
+        RTOP : constant for right corner x coordinate
+        FPS : frame per second
+'''
+
 import pygame
 from sprites.field import Field
 from sprites.hit import Hit
@@ -17,6 +26,7 @@ from objects.player import Player
 from objects.ship import Ship
 
 background = (151,210,203)
+text_color = (0,51,102)
 CELL = 37
 LTOP = 200
 RTOP = LTOP+CELL*10+250
@@ -46,7 +56,7 @@ class PvC:
         self.game = True
 
     def initialize(self):
-        ''' Initializing of the game. '''
+        ''' Initializing the game. '''
         self.screen.fill(background)
         title = self.title_font.render('Laivanupotus', True, (0,51,102))
         pfield_title = self.font.render('Oma kenttä', True, (0,51,102))
@@ -65,12 +75,17 @@ class PvC:
         self.screen.blit(cfield_title, cfield_place)
         pygame.display.update()
         self.place_ships(field_player, all_sprites)
-        self.pvc_game(all_sprites, field_comp, field_player)
+        self.pvc_game(all_sprites, field_comp)
 
     def place_ships(self, field_player, all_sprites):
+        ''' Before starting player put 5 ships on right board. 
+            Args:
+                field_player : player's field object
+                all_sprites : list of sprites
+        '''
         ships = [('Carrier', 5), ('Battleship',4), ('Cruiser',3), ('Submarine',3), ('Destroyer',2)]
         clock = pygame.time.Clock()
-        clock.tick(60)
+        clock.tick(FPS)
         running = True
         while running:
             for event in pygame.event.get():
@@ -92,9 +107,14 @@ class PvC:
                     self.announcement(announcement)
                     running = False
     
-    def pvc_game(self, all_sprites, field_comp, field_player):
+    def pvc_game(self, all_sprites, field_comp):
+        ''' Game loop 
+            Args:
+                field_comp : computer's field object
+                all_sprites : list of sprites
+        '''
         clock = pygame.time.Clock()
-        clock.tick(60)
+        clock.tick(FPS)
         while self.game:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
@@ -114,6 +134,11 @@ class PvC:
             pygame.display.flip()
 
     def player_event(self, mouse_position, all_sprites):
+        ''' Player's shooting functionality.
+            Args:
+                mouse_position : 2 mouse position coordinates in pixels
+                all_sprites : list of sprites
+        '''
         if mouse_position[0] <= LTOP or mouse_position[1] <= LTOP:
             return
         if mouse_position[0] >= RTOP-250 or mouse_position[1] >= RTOP-250:
@@ -135,6 +160,10 @@ class PvC:
             self.announcement(announcement)
 
     def comp_event(self, all_sprites):
+        ''' Computer's shooting functionality.
+            Args:
+                all_sprites : list of sprites
+        '''
         coordinates = self.player_board.comp_shot()
         corner_x = coordinates[0]*CELL + LTOP
         corner_y = coordinates[1]*CELL + RTOP
@@ -148,6 +177,14 @@ class PvC:
                 self.game = False
 
     def player_ship(self, mouse_pos, ships, all_sprites, mouse_func):
+        ''' Player's ship layout functionality.
+            Args:
+                mouse_pos : mouse position coordinates in pixels
+                ships : list of the names of the ship's
+                all_sprites : list of sprites
+                mouse_func : list of the mouse get_pressed function :
+                    0 - left button pressed, 2 - right button pressed
+        '''
         if mouse_pos[0] <= RTOP or mouse_pos[1] <= LTOP:
             return
         x_axis = (mouse_pos[0]-RTOP) - (mouse_pos[0]-RTOP)%CELL + RTOP
@@ -188,11 +225,12 @@ class PvC:
                 else:
                     all_sprites.add(DestroyerVert(x_axis, y_axis))    
             ships.pop(0)
-            self.player_board.print_board()
-            print("______________________")
             pygame.display.flip()
 
     def announcement(self, text):
+        ''' Print a notification message at the bottom of the screen. 
+            The message disappears after 1 second.    
+        '''
         announcement = self.announcement_font.render(text, True, (0,51,102))
         announcement_place = announcement.get_rect(center=(self.width/2, self.higth-100))
         self.screen.blit(announcement, announcement_place)

@@ -1,7 +1,7 @@
-## Ohjelmistotekniikka, harjoitustyö
-
+# Ohjelmistotekniikka, harjoitustyö
+----
 ## Laivanupotuspeli
-
+----
 Sovelluksen toiminta on toteutettu Python-versiolla 3.8. 
 
 Peli on versio perinteisestä laivanupotuspelistä. Pelissä voi pelata joko yksin tai pelata tietokonetta vastaan. Yksinpelissä tavoitteena löytää kenttään piilotettuja laivoja ennen kuin ammukset loppuvat. 
@@ -9,6 +9,7 @@ Pelissä tietokonetta vasten tavoittena upottaa tietokoneen laivat ennen kuin ti
 
 
 ### Dokumentaatio
+----
 
 [Vaatimusmäärittely](https://github.com/zmejka/ot-harjoitustyo/blob/master/dokumentaatio/vaatimusmaarittely.md)
 
@@ -18,6 +19,8 @@ Pelissä tietokonetta vasten tavoittena upottaa tietokoneen laivat ennen kuin ti
 
 [Arkkitehtuuri](https://github.com/zmejka/ot-harjoitustyo/blob/master/dokumentaatio/arkkitehtuuri.md)
 
+[Käyttöohje](https://github.com/zmejka/ot-harjoitustyo/blob/master/dokumentaatio/kayttoohje.md)
+
 [Pelisäännöt](https://github.com/zmejka/ot-harjoitustyo/blob/master/dokumentaatio/battleship.pdf)
 
 ### Julkaisu
@@ -26,12 +29,17 @@ Pelissä tietokonetta vasten tavoittena upottaa tietokoneen laivat ennen kuin ti
 
 [Release 2](https://github.com/zmejka/ot-harjoitustyo/releases/tag/viikko6)
 
+[Release 3](https://github.com/zmejka/ot-harjoitustyo/releases/tag/viikko6)
+
 ### Asennus
+----
+
 1. Asennuskomento:
 
         poetry install
 
 ### Toiminnot
+----
 
 1. Käynnistys:
 

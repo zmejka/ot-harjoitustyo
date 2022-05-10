@@ -1,6 +1,7 @@
 ''' UI class for Single Game.
     Arguments:
         background : color settings
+        text_color : color settings
         CELL : edge of cell in pixels
         LTOP : constant for left corner x coordinate
         RTOP : constant for right corner x coordinate
@@ -12,6 +13,7 @@ from sprites.hit import Hit
 from sprites.miss import Miss
 
 background = (151,210,203)
+text_color = (0,51,102)
 CELL = 37
 LTOP = 200
 RTOP = LTOP + CELL*10
@@ -34,7 +36,6 @@ class Single:
         self.board = board
         self.title_font = pygame.font.SysFont('alias', 70)
         self.font = pygame.font.SysFont('alias', 40)
-        self.text_color = (0,51,102)
         self.game = True
 
     def single_game(self):
@@ -43,12 +44,14 @@ class Single:
             Create game field. 
         '''
         self.screen.fill(background)
-        title = self.title_font.render('Laivanupotus', True, self.text_color)
+        title = self.title_font.render('Laivanupotus', True, text_color)
         title_place = title.get_rect(center=(self.width/2, self.higth/12))
-        field_title = self.font.render('Vastustajan kenttä', True, self.text_color)
+        field_title = self.font.render('Vastustajan kenttä', True, text_color)
         field_place = field_title.get_rect(center=(LTOP+165, self.higth/5))
-        ammo_text = self.font.render('Ammuksia jäljellä:', True, self.text_color)
+        ammo_text = self.font.render('Ammuksia jäljellä:', True, text_color)
         ammo_place = ammo_text.get_rect(center=(self.width/2+150, self.higth/3))
+        ammo_start = self.title_font.render(str(self.board.get_ammo()), True, text_color)
+        ammo_start_place = ammo_start.get_rect(center=(self.width/2+330, self.higth/3-10))
         game_field = Field(LTOP-CELL, LTOP-CELL)
         all_sprites = pygame.sprite.Group()
         pygame.display.update()
@@ -57,12 +60,12 @@ class Single:
         self.screen.blit(title, title_place)
         self.screen.blit(field_title, field_place)
         self.screen.blit(ammo_text, ammo_place)
+        self.screen.blit(ammo_start, ammo_start_place)
 
         ''' Game loop.
             Game continue until ammunition end or player sink all ships.
             On mouse left button click, shot on the board and check game status.
         '''
-
         clock = pygame.time.Clock()
         clock.tick(60)        
         while self.game:
@@ -118,18 +121,22 @@ class Single:
             self.announcement(announcement)
 
     def announcement(self, text):
-        announcement = self.title_font.render(text, True, self.text_color)
+        ''' Print a notification message at the bottom of the screen. 
+        The message disappears after 1 second.    
+        '''
+        announcement = self.title_font.render(text, True, text_color)
         announcement_place = announcement.get_rect(center=(self.width/2, self.higth-100))
         self.screen.blit(announcement, announcement_place)
         pygame.display.update()
-        pygame.time.delay(800)
+        pygame.time.delay(1000)
         pygame.draw.rect(self.screen, background, [self.width/8, self.higth-200, 1000, 150])
         pygame.display.update()
     
     def ammo_counter(self):
+        ''' Display the number of ammunition. The number is updated after each shot. '''
         pygame.draw.rect(self.screen, background, [self.width/2+300, self.higth/3-30, 60, 40])
         pygame.display.update()
-        ammo = self.title_font.render(str(self.board.get_ammo()), True, self.text_color)
+        ammo = self.title_font.render(str(self.board.get_ammo()), True, text_color)
         place = ammo.get_rect(center=(self.width/2+330, self.higth/3-10))
         self.screen.blit(ammo, place)
             
