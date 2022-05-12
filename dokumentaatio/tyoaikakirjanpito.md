@@ -37,4 +37,6 @@
 |8.5|4| Vuoropelin ja pelin lopetuksen toiminnallisuudet
 |9.5|6| Yksinpelin ui:n päivitys. Dokumentoinnin päivitys (dogstrings). PvC pelin laivojen asettamisen toiminnallisuuden toteutus.
 |10.5|3| Dogstring:t päivitetty. Virhekorjaukset. Käyttöohjeen kirjoittamista.
-|Yhteensä:| 91 | tuntia
+|11.5|5| Tulosten tallentaminen tiedostoon toiminnallisuus. Unittestit.
+|12.5|3| Unittestit jatkoa. Koodin siistiminen. Turhien tulostusten ja muuttujien poistot. Dogstringien päivitys. 
+|Yhteensä:| 99 | tuntia

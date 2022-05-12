@@ -9,6 +9,7 @@
 '''
 
 import pygame
+from results import Results
 from sprites.field import Field
 from sprites.hit import Hit
 from sprites.miss import Miss
@@ -51,9 +52,10 @@ class PvC:
         self.title_font = pygame.font.SysFont('alias', 70)
         self.announcement_font = pygame.font.SysFont('alias', 50)
         self.font = pygame.font.SysFont('alias', 40)
-        self.player = Player("Pelaaja", True)
+        self.player = Player("Pelaaja PvC", True)
         self.computer = Player("AI", False)
         self.game = True
+        self.result_file = Results()
 
     def initialize(self):
         ''' Initializing the game. '''
@@ -83,9 +85,11 @@ class PvC:
                 field_player : player's field object
                 all_sprites : list of sprites
         '''
-        ships = [('Carrier', 5), ('Battleship',4), ('Cruiser',3), ('Submarine',3), ('Destroyer',2)]
+        ships = [('Lentotukialus', 5), ('Taistelulaiva',4), ('Risteilijä',3), ('Sukellusvene',3), ('Hävittäjä',2)]
         clock = pygame.time.Clock()
         clock.tick(FPS)
+        announcement = 'Aseta laivat oikeapuoliselle kentälle!'
+        self.announcement(announcement)
         running = True
         while running:
             for event in pygame.event.get():
@@ -151,9 +155,12 @@ class PvC:
         elif self.comp_board.board[int((corner_y-LTOP)/CELL)][int((corner_x - LTOP)/CELL)]==1:
             if self.comp_board.shot(int((corner_y-LTOP)/CELL),int((corner_x - LTOP)/CELL)):
                 all_sprites.add(Hit(corner_x, corner_y))
+                if self.comp_board.notices:
+                    self.sunken_ships_computer()
                 if self.comp_board.game_over():
                     announcement = 'Kaikki vastustajan laivat on upotettu! Peli on päättynyt!'
                     self.announcement(announcement)
+                    self.result_file.write_results((self.player.get_name(), 100-self.player_board.get_ammo()))
                     self.game = False
         else:
             announcement = 'Tähän kenttään on jo ammuttu!'
@@ -171,6 +178,8 @@ class PvC:
             all_sprites.add(Miss(corner_y, corner_x))
         elif self.player_board.board[coordinates[0]][coordinates[1]]==3:
             all_sprites.add(Hit(corner_y, corner_x))
+            if self.player_board.notices:
+                self.sunken_ships_player()
             if self.player_board.game_over():
                 announcement = 'Kaikki pelaajan laivat on upotettu! Peli on päättynyt!'
                 self.announcement(announcement)
@@ -193,7 +202,6 @@ class PvC:
         col = int((mouse_pos[0]-RTOP)/CELL)
         coordinates = (row, col)
         name = ships[0][0]
-        print(name)
         length = ships[0][1]
         if mouse_func[0]:
             orientation = 0
@@ -203,24 +211,24 @@ class PvC:
         self.player_board.ships.append(ship)
         if self.player_board.place_the_ship(ship, coordinates, orientation, length):
             if orientation == 0:
-                if name=='Carrier':
+                if name=='Lentotukialus':
                     all_sprites.add(Carrier(x_axis, y_axis))
-                elif name=='Battleship':
+                elif name=='Taistelulaiva':
                     all_sprites.add(Battleship(x_axis, y_axis))
-                elif name=='Cruiser':
+                elif name=='Risteilijä':
                     all_sprites.add(Cruiser(x_axis, y_axis))
-                elif name=='Submarine':
+                elif name=='Sukellusvene':
                     all_sprites.add(Submarine(x_axis, y_axis))
                 else:
                     all_sprites.add(Destroyer(x_axis, y_axis))
             if orientation == 1:
-                if name=='Carrier':
+                if name=='Lentotukialus':
                     all_sprites.add(CarrierVert(x_axis, y_axis))
-                elif name=='Battleship':
+                elif name=='Taistelulaiva':
                     all_sprites.add(BattleshipVert(x_axis, y_axis))
-                elif name=='Cruiser':
+                elif name=='Risteilijä':
                     all_sprites.add(CruiserVert(x_axis, y_axis))
-                elif name=='Submarine':
+                elif name=='Sukellusvene':
                     all_sprites.add(SubmarineVert(x_axis, y_axis))
                 else:
                     all_sprites.add(DestroyerVert(x_axis, y_axis))    
@@ -232,9 +240,25 @@ class PvC:
             The message disappears after 1 second.    
         '''
         announcement = self.announcement_font.render(text, True, (0,51,102))
-        announcement_place = announcement.get_rect(center=(self.width/2, self.higth-100))
+        announcement_place = announcement.get_rect(center=(self.width/2, self.higth-80))
         self.screen.blit(announcement, announcement_place)
         pygame.display.update()
         pygame.time.delay(1000)
-        pygame.draw.rect(self.screen, background, [self.width/8, self.higth-150, 1000, 200])
+        pygame.draw.rect(self.screen, background, [self.width/8, self.higth-120, 1020, 120])
         pygame.display.update()
+
+    def sunken_ships_player(self):
+        ''' Display list of player's sunken ships on right side of the screen. '''
+        pygame.draw.rect(self.screen, background, [LTOP*4-20, LTOP*3-20, 400, 100])
+        pygame.display.update()
+        sunken_ships = self.font.render(str(self.player_board.notices[len(self.player_board.notices)-1]), True, text_color)
+        place = sunken_ships.get_rect(center=(LTOP*4+180, LTOP*3))
+        self.screen.blit(sunken_ships, place)
+
+    def sunken_ships_computer(self):
+        ''' Display list of computers's sunken ships on left side of the screen. '''
+        pygame.draw.rect(self.screen, background, [LTOP-70, LTOP*3-20, 430, 100])
+        pygame.display.update()
+        sunken_ships = self.font.render(str(self.comp_board.notices[len(self.comp_board.notices)-1]), True, text_color)
+        place = sunken_ships.get_rect(center=(LTOP+160, LTOP*3))
+        self.screen.blit(sunken_ships, place)

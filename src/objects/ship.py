@@ -8,84 +8,65 @@ class Ship:
         orientation : 1 = vertical, 0 = horizontal.
         status : if "True" ship are sunk.
         position : list of coordinates (row,column) of the ship.
-        hits : counter for hits. '''
+        hits : counter for hits.
+        notice : string, notification of the ship status.
+    '''
 
     def __init__(self, name, length, orientation):
-        self.name = name
-        self.length = length
-        self.orientation = orientation
-        self.status = False
+        self._name = name
+        self._length = length
+        self._orientation = orientation
+        self._status = False
         self.position = []
-        self.hits = 0
-
-    def set_name(self, shipname):
-        ''' Set new name of the ship.
-            Args:
-            shipname : string, name of the ship
-        '''
-        self.name = shipname
+        self._hits = 0
+        self._notice = ""
 
     def get_name(self):
         ''' Returns:
                 name of the ship. '''
-        return self.name
+        return self._name
 
-    def set_length(self, length):
-        ''' Set length of the ship if it's between 2 - 5.
-            Args:
-            length = int, length of the ship
+    def get_notice(self):
+        ''' Returns:
+                ship notice.
         '''
-        if length in range(2, 6):
-            self.length = length
+        return self._notice
 
     def get_length(self):
         ''' Returns:
                 length of the ship. '''
-        return self.length
-
-    def set_orientation(self, orientation):
-        ''' Set orientation of the ship if it's 0 or 1.
-            Args:
-            orientation : int, orientation of the ship
-        '''
-        if orientation in (0, 1):
-            self.orientation = orientation
+        return self._length
 
     def get_orientation(self):
         ''' Returns:
                 orientation of the ship. '''
-        return self.orientation
+        return self._orientation
 
-    def set_status(self, status):
+    def _set_status(self, status):
         ''' Set status of the ship if it's True or False.
             Args:
             status : boolean, status of the ship
         '''
         if status in (True, False):
-            self.status = status
+            self._status = status
 
     def are_sunk(self):
         ''' Returns:
                 status of the ship. '''
-        return self.status
+        return self._status
 
-    def ship_position(self):
+    def ship_random_position(self):
         ''' Returns:
             pair of the random coordinates.
             Both of coordinates are random number between 0-9.'''
         return int(random.randint(0,9)), int(random.randint(0,9))
 
-    def get_hits(self):
-        ''' Returns:
-                value of counter of the hits. '''
-        return self.hits
-
     def add_hit(self):
         ''' Add 1 to the counter of the hits.
             If number of the hits is equal to length of the ship,
             set ship status to True (ship are sunk).'''
-        self.hits = self.hits + 1
-        if self.hits == self.length:
-            self.set_status(True)
-            print(self.name, "on uponnut!")
- 
+        self._hits = self._hits + 1
+        if self._hits == self._length:
+            self._notice = self._name + " on uponnut!"
+            self._set_status(True)
+     

@@ -14,11 +14,12 @@ class Board:
     def __init__(self):
         self.board = [[0]*10 for i in range(10)]
         self.ships = []
-        self.game_status = False
-        self.ammo = 40
-        self.coordinates = []
+        self._game_status = False
+        self._ammo = 40
+        self._coordinates = []
         for row, col in itertools.product(range(10), range(10)):
-            self.coordinates.append((row,col))
+            self._coordinates.append((row,col))
+        self.notices = []
 
     def create_ships(self):
         ''' Creating 5 types of ships with random orientation and
@@ -26,11 +27,11 @@ class Board:
             Used in single game and PvC game to create computer ships.
             Ships are added to the ships-list.
         '''
-        self.ships.append(Ship("Carrier", 5, int(random.randint(0,1))))
-        self.ships.append(Ship("Battleship", 4, int(random.randint(0,1))))
-        self.ships.append(Ship("Cruiser", 3, int(random.randint(0,1))))
-        self.ships.append(Ship("Submarine", 3, int(random.randint(0,1))))
-        self.ships.append(Ship("Destroyer", 2, int(random.randint(0,1))))
+        self.ships.append(Ship("Lentotukialus", 5, int(random.randint(0,1))))
+        self.ships.append(Ship("Taistelulaiva", 4, int(random.randint(0,1))))
+        self.ships.append(Ship("Risteilijä", 3, int(random.randint(0,1))))
+        self.ships.append(Ship("Sukellusvene", 3, int(random.randint(0,1))))
+        self.ships.append(Ship("Hävittäjä", 2, int(random.randint(0,1))))
 
     def randomize_ships(self):
         ''' Randomily draw the coordinates for each ship in the list
@@ -39,7 +40,7 @@ class Board:
         for i in self.ships:
             location = False
             while not location:
-                coordinates = i.ship_position()
+                coordinates = i.ship_random_position()
                 if self.place_the_ship(i, coordinates, i.get_orientation(), i.get_length()):
                     location = True
 
@@ -54,15 +55,14 @@ class Board:
                 False, if ship do not fit in the gameboard
         '''
         if orientation == 1 and coordinates[0]+length < 11:
-            if self.overlap_check(coordinates, orientation, length):
+            if self._overlap_check(coordinates, orientation, length):
                 for i in range(length):
                     self.board[coordinates[0]+i][coordinates[1]]=1
                     place = (coordinates[0]+i, coordinates[1])
                     ship.position.append(place)
-
                 return True
         if orientation == 0 and coordinates[1]+length < 11:
-            if self.overlap_check(coordinates, orientation, length):
+            if self._overlap_check(coordinates, orientation, length):
                 for i in range(length):
                     self.board[coordinates[0]][coordinates[1]+i]=1
                     place = (coordinates[0], coordinates[1]+i)
@@ -70,7 +70,7 @@ class Board:
                 return True
         return False
 
-    def overlap_check(self, coordinates, orientation, length):
+    def _overlap_check(self, coordinates, orientation, length):
         ''' Checking that the ship do not overlay other ships.
         Args:
             coordinates : pair of numbers. Both of coordinates are random number between 0-9
@@ -101,14 +101,14 @@ class Board:
                 True, if board has been shot.
                 False, if player has no ammunition
         '''
-        if self.ammo > 0:
+        if self._ammo > 0:
             if self.board[row][col] < 2:
                 hit = (row, col)
                 self.board[row][col] = self.board[row][col] + 2
-                self.ship_check(hit)
-            self.ammo = self.ammo - 1
+                self._ship_check(hit)
+            self._ammo = self._ammo - 1
             return True
-        self.game_status = True
+        self._game_status = True
         return False
 
     def comp_shot(self):
@@ -117,13 +117,13 @@ class Board:
             Returns:
                 pair of coordinates (row, column)
         '''
-        random_coordinates = random.choice(self.coordinates)
+        random_coordinates = random.choice(self._coordinates)
         self.shot(random_coordinates[0], random_coordinates[1])
-        self.coordinates.remove(random_coordinates)
+        self._coordinates.remove(random_coordinates)
         return random_coordinates
 
-    def ship_check(self, coordinates):
-        '''If pair of coordinates in ship's list, add hit.
+    def _ship_check(self, coordinates):
+        ''' If pair of coordinates in ship's list, add hit.
             Args:
                 coordinates : pair of numbers. Both of coordinates are random number
                 between 0-9.
@@ -132,8 +132,14 @@ class Board:
             for ship in self.ships:
                 if coordinates in ship.position:
                     ship.add_hit()
+                    self._notification(ship)
 
-    def check_game_over(self):
+    def _notification(self, ship):
+        ''' Checking if ships are sunk and add notification to notification list. '''
+        if ship.are_sunk():
+            self.notices.append(ship.get_notice())
+
+    def _check_game_over(self):
         ''' Checking for game status. If all 5 ships are sunk, set game status to
             True.
             Args:
@@ -145,7 +151,7 @@ class Board:
             if ship.are_sunk():
                 counter = counter + 1
         if counter == 5:
-            self.game_status = True
+            self._game_status = True
 
     def game_over(self):
         ''' Checkingif game is over.
@@ -153,23 +159,20 @@ class Board:
                 True, if game is over.
                 False, if game continue.
         '''
-        self.check_game_over()
-        if self.game_status:
+        self._check_game_over()
+        if self._game_status:
             return True
         return False
 
     def set_ammo(self, ammo):
         ''' For PvC game: Set number of ammos to given number.
             Args:
-                ammo : number of ammunition
+                ammo : number of the ammunition
         '''
         if isinstance(ammo, int):
-            self.ammo = ammo
-    
-    def get_ammo(self):
-        return self.ammo
+            self._ammo = ammo
 
-    def print_board(self):
-        ''' Muista poistaa!!!!! Testaus printti'''
-        for i in self.board:
-            print(i)
+    def get_ammo(self):
+        ''' Returns:
+            number of the ammunition.'''
+        return self._ammo

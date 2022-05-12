@@ -1,18 +1,41 @@
-
 class Player:
+    ''' Arguments:
+        name : string.
+        status : turn status of the player.
+            If "True" is player's turn.
+    '''
 
     def __init__(self, name, status):
-        self.name = name
-        self.status = status
+        self._name = name
+        self._status = status
 
     def get_name(self):
-        return self.name
+        ''' Returns:
+                name of the player
+        '''
+        return self._name
 
     def set_name(self, name):
-        self.name = name
+        ''' Sen name of the player. It is no limitations for player name,
+            except length need to be between 3 - 39 symbols.
+            Args:
+                name : string
+            Returns:
+                True if name are setted
+                False if name are to short
+        '''
+        if len(name) > 2 and len(name) < 40:
+            self._name = str(name)
+            return True
+        return False
 
     def set_status(self, status):
-        self.status = status
+        ''' Change status of the player. '''
+        if isinstance(status, bool):
+            self._status = status
 
     def get_status(self):
-        return self.status
+        ''' Returns:
+            Status on the player.
+        '''
+        return self._status

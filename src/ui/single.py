@@ -8,6 +8,8 @@
 '''
 
 import pygame
+from objects.player import Player
+from results import Results
 from sprites.field import Field
 from sprites.hit import Hit
 from sprites.miss import Miss
@@ -28,7 +30,8 @@ class Single:
         title_font : font settings for title
         font : font settings for other text
         game : game status. True, if game continue
-        '''
+    '''
+    
     def __init__(self, screen, width, hight, board):
         self.screen = screen
         self.width = width
@@ -37,11 +40,12 @@ class Single:
         self.title_font = pygame.font.SysFont('alias', 70)
         self.font = pygame.font.SysFont('alias', 40)
         self.game = True
+        self.result_file = Results()
 
     def single_game(self):
-        ''' Initializing of the game. 
+        ''' Initializing of the game.
             Set screen and background. Initialize sprite-list.
-            Create game field. 
+            Create game field.
         '''
         self.screen.fill(background)
         title = self.title_font.render('Laivanupotus', True, text_color)
@@ -53,6 +57,7 @@ class Single:
         ammo_start = self.title_font.render(str(self.board.get_ammo()), True, text_color)
         ammo_start_place = ammo_start.get_rect(center=(self.width/2+330, self.higth/3-10))
         game_field = Field(LTOP-CELL, LTOP-CELL)
+        player = Player("Pelaaja Single", True)
         all_sprites = pygame.sprite.Group()
         pygame.display.update()
         all_sprites.add(game_field)
@@ -67,7 +72,7 @@ class Single:
             On mouse left button click, shot on the board and check game status.
         '''
         clock = pygame.time.Clock()
-        clock.tick(60)        
+        clock.tick(60)
         while self.game:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
@@ -77,11 +82,11 @@ class Single:
                     mouse_position = pygame.mouse.get_pos()
                     if mouse_function[0]:
                         if game_field.rect.collidepoint(mouse_position):
-                            self.mouse_event(mouse_position, all_sprites)
+                            self.mouse_event(mouse_position, all_sprites, player)
             pygame.display.update()
             all_sprites.draw(self.screen)
 
-    def mouse_event(self, mouse_position, all_sprites):
+    def mouse_event(self, mouse_position, all_sprites, player):
         ''' Functionality after pressing the left mouse button.
             Args:
                 mouse_position : pair of coordinates
@@ -106,10 +111,16 @@ class Single:
         elif self.board.board[int((corner_y-LTOP)/CELL)][int((corner_x - LTOP)/CELL)]==1:
             if self.board.shot(int((corner_y-LTOP)/CELL),int((corner_x - LTOP)/CELL)):
                 all_sprites.add(Hit(corner_x, corner_y))
+                if self.board.notices:
+                    self.sunken_ships()
                 self.ammo_counter()
                 if self.board.game_over():
                     announcement = 'Kaikki laivat on upotettu! Peli on päättynyt!'
                     self.announcement(announcement)
+                    self.results_file.write_results((player.get_name(), 40-self.board.get_ammo()))
+                    pygame.display.update()
+                    pygame.time.delay(500)
+                    self.game = False
             else:
                 announcement = 'Peli on päättynyt! Ammukset loppuivat!'
                 self.announcement(announcement)
@@ -121,17 +132,17 @@ class Single:
             self.announcement(announcement)
 
     def announcement(self, text):
-        ''' Print a notification message at the bottom of the screen. 
-        The message disappears after 1 second.    
+        ''' Print a notification message at the bottom of the screen.
+            The message disappears after 1 second.
         '''
         announcement = self.title_font.render(text, True, text_color)
         announcement_place = announcement.get_rect(center=(self.width/2, self.higth-100))
         self.screen.blit(announcement, announcement_place)
         pygame.display.update()
         pygame.time.delay(1000)
-        pygame.draw.rect(self.screen, background, [self.width/8, self.higth-200, 1000, 150])
+        pygame.draw.rect(self.screen, background, [self.width/8, self.higth-200, 1100, 150])
         pygame.display.update()
-    
+
     def ammo_counter(self):
         ''' Display the number of ammunition. The number is updated after each shot. '''
         pygame.draw.rect(self.screen, background, [self.width/2+300, self.higth/3-30, 60, 40])
@@ -139,4 +150,11 @@ class Single:
         ammo = self.title_font.render(str(self.board.get_ammo()), True, text_color)
         place = ammo.get_rect(center=(self.width/2+330, self.higth/3-10))
         self.screen.blit(ammo, place)
-            
+
+    def sunken_ships(self):
+        ''' Display list of sunken ships. '''
+        pygame.draw.rect(self.screen, background, [self.width/2-30, self.higth/3+20, 500, 150])
+        pygame.display.update()
+        sunken_ships = self.font.render(str(self.board.notices[len(self.board.notices)-1]), True, text_color)
+        place = sunken_ships.get_rect(center=(self.width/2+180, self.higth/2 - 20))
+        self.screen.blit(sunken_ships, place)
