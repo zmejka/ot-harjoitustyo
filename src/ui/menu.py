@@ -51,29 +51,29 @@ class Menu:
                     menu = False
 
                 if event.type == pygame.MOUSEBUTTONDOWN:
-                    if self.w_mid - 150 < mouse_pos[0] < self.w_mid + 150 and self.h_mid/4 + 160 < mouse_pos[1] < self.h_mid/4+230:
+                    if self.w_mid - 200 < mouse_pos[0] < self.w_mid + 200 and self.h_mid/4 + 160 < mouse_pos[1] < self.h_mid/4+230:
                         return "Single"
 
-                    if self.w_mid - 150 < mouse_pos[0] < self.w_mid + 250 and self.h_mid/4 + 160 < mouse_pos[1] < self.h_mid/4+335:
+                    if self.w_mid - 200 < mouse_pos[0] < self.w_mid + 200 and self.h_mid/4 + 260 < mouse_pos[1] < self.h_mid/4+330:
                         return "PvC"
 
-                    if self.w_mid - 150 < mouse_pos[0] < self.w_mid + 350 and self.h_mid/4 + 160 < mouse_pos[1] < self.h_mid/4+435:
+                    if self.w_mid - 200 < mouse_pos[0] < self.w_mid + 200 and self.h_mid/4 + 360 < mouse_pos[1] < self.h_mid/4+430:
                         return "Scores"
 
-                    if self.w_mid - 150 < mouse_pos[0] < self.w_mid + 450 and self.h_mid/4 + 160 < mouse_pos[1] < self.h_mid/4+535:
+                    if self.w_mid - 200 < mouse_pos[0] < self.w_mid + 200 and self.h_mid/4 + 460 < mouse_pos[1] < self.h_mid/4+530:
                         return "Quit"
 
 
             self.screen.fill(background)
 
-            if self.w_mid - 220 <= mouse_pos[0] <= self.w_mid + 220 and self.h_mid/4+140 <= mouse_pos[1] <= self.h_mid/4+225:
-                pygame.draw.rect(self.screen, rect_color, [self.w_mid-200, self.h_mid/4+165, 400, 60])
-            if self.w_mid - 220 <= mouse_pos[0] <= self.w_mid + 220 and self.h_mid/4+240 <= mouse_pos[1] <= self.h_mid/4+330:
-                pygame.draw.rect(self.screen, rect_color, [self.w_mid-200, self.h_mid/4+265, 400, 60])
-            if self.w_mid - 220 <= mouse_pos[0] <= self.w_mid + 220 and self.h_mid/4+340 <= mouse_pos[1] <= self.h_mid/4+430:
-                pygame.draw.rect(self.screen, (160, 160, 160), [self.w_mid-200, self.h_mid/4+365, 400, 60])
-            if self.w_mid - 220 <= mouse_pos[0] <= self.w_mid + 220 and self.h_mid/4+440 <= mouse_pos[1] <= self.h_mid/4+530:
-                pygame.draw.rect(self.screen, rect_color, [self.w_mid-200, self.h_mid/4+465, 400, 60])
+            if self.w_mid - 200 <= mouse_pos[0] <= self.w_mid + 200 and self.h_mid/4+160 <= mouse_pos[1] <= self.h_mid/4+230:
+                pygame.draw.rect(self.screen, rect_color, [self.w_mid-200, self.h_mid/4+160, 400, 70])
+            if self.w_mid - 200 <= mouse_pos[0] <= self.w_mid + 200 and self.h_mid/4+260 <= mouse_pos[1] <= self.h_mid/4+330:
+                pygame.draw.rect(self.screen, rect_color, [self.w_mid-200, self.h_mid/4+260, 400, 70])
+            if self.w_mid - 200 <= mouse_pos[0] <= self.w_mid + 200 and self.h_mid/4+360 <= mouse_pos[1] <= self.h_mid/4+430:
+                pygame.draw.rect(self.screen, rect_color, [self.w_mid-200, self.h_mid/4+360, 400, 70])
+            if self.w_mid - 200 <= mouse_pos[0] <= self.w_mid + 200 and self.h_mid/4+460 <= mouse_pos[1] <= self.h_mid/4+530:
+                pygame.draw.rect(self.screen, rect_color, [self.w_mid-200, self.h_mid/4+460, 400, 70])
 
             self.screen.blit(title, title_place)
             self.screen.blit(single, single_place)

@@ -117,9 +117,13 @@ class PvC:
                 field_comp : computer's field object
                 all_sprites : list of sprites
         '''
+        quit = self.font.render('Palaa', True, text_color)
+        quit_place = quit.get_rect(center=(self.width-60, 40))
+        self.screen.blit(quit, quit_place)
         clock = pygame.time.Clock()
         clock.tick(FPS)
         while self.game:
+            mouse_position = pygame.mouse.get_pos()
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     self.game = False
@@ -128,12 +132,16 @@ class PvC:
                     self.computer.set_status(False)
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     mouse_function = pygame.mouse.get_pressed()
-                    mouse_position = pygame.mouse.get_pos()
+                    if self.width - 100 < mouse_position[0] < self.width-20 and 15 < mouse_position[1] < 65:
+                        return
                     if mouse_function[0]:
                         if field_comp.rect.collidepoint(mouse_position):
                             self.player_event(mouse_position, all_sprites)
                             self.computer.set_status(True)
                             pygame.time.delay(50)
+            if self.width - 100 <= mouse_position[0] <= self.width-20 and 15 <= mouse_position[1] <= 65:
+                pygame.draw.rect(self.screen, (155, 255, 229), [self.width - 100, 15, 80, 50])
+            self.screen.blit(quit, quit_place)
             all_sprites.draw(self.screen)
             pygame.display.flip()
 

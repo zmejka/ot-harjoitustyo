@@ -1,9 +1,12 @@
 import os
+import sys
 import pygame
 from objects.board import Board
+from results import Results
 from ui.menu import Menu
 from ui.single import Single
 from ui.pvc import PvC
+from ui.scores import Scores
 
 CELL = 37
 WIDTH = 37
@@ -22,7 +25,7 @@ class Main:
         self._height = HEIGHT*CELL
 
     def main(self):
-        ''' Note: In rows (32) pygame.init and (50) pygame.quit: pylint: disable=no-member!
+        ''' Note: In rows (32) pygame.init and (50, 55) pygame.quit: pylint: disable=no-member!
             Args:
                 Initializing pygame and creating screen.
                 menu : menu object
@@ -49,14 +52,19 @@ class Main:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:  # pylint: disable=no-member
                     raise SystemExit
+                if menu.menu() == "Quit":
+                    pygame.quit() # pylint: disable=no-member
+                    sys.exit()
                 if menu.menu() == "Single":
                     single = self.start_single(screen)
                     single.single_game()
                 if menu.menu() == "PvC":
                     pl_vs_comp = self.start_pvc(screen)
                     pl_vs_comp.initialize()
-                if menu.menu() == "Quit":
-                    pygame.sys.exit()
+                if menu.menu() == "Scores":
+                    self.result_list()
+                    scores = Scores(screen, self._width, self._height)
+                    scores.scores(self.result_list())
             pygame.display.update()
             all_sprites.draw(screen)
             pygame.display.flip()
@@ -96,3 +104,15 @@ class Main:
         comp_board.randomize_ships()
         pl_vs_comp = PvC(screen,WIDTH*CELL, HEIGHT*CELL, player_board, comp_board)
         return pl_vs_comp
+
+    def result_list(self):
+        results = Results()
+        result_list = results.load_results()
+        if not result_list:
+            return None
+        score_list = []
+        for row in result_list:
+            values = row[:-1].split(',')
+            score_list.append((values[0], int(values[1])))
+        score_list = sorted(score_list, key=lambda x:x[1], reverse=False)
+        return score_list[0:3]

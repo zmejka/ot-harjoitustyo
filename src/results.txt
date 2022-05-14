@@ -1,6 +1,1 @@
-Pelaaja PvC,43
-Pelaaja PvC,74
-Pelaaja PvC,58
-Pelaaja PvC,51
-Pelaaja PvC,78
-Pelaaja PvC,47
+Pelaaja PvC,45

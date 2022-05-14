@@ -21,6 +21,8 @@
 
 ### Viikko 7:
 - Toteutettu pelaaja vs tietokone osa.
-- Päivitetty molempien pelien käyttöliittymät
-- Testaus:
+- Toteutettu pelajaan laivojen asettaminen kentälle.
+- Päivitetty molempien pelien käyttöliittymät.
+- Lisätty tulosten tallentaminen tiedostoon. Lisätty tulosten tulostus käyttöliittymä.
+- Testaus: poistettu turhat testit (muuttujat ja metodit eivät enää käytössä). Testauksen kattavuus 80%.
 

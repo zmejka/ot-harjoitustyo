@@ -15,7 +15,7 @@ class Results:
                 lines = game_results.readlines()
                 for line in lines:
                     loaded_results.append(line)
-                    return loaded_results
+                return loaded_results
         except FileNotFoundError:
             loaded_results = self.write_results(("_", "_"))
             return loaded_results

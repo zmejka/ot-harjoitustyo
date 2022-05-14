@@ -40,7 +40,7 @@ class Single:
         self.title_font = pygame.font.SysFont('alias', 70)
         self.font = pygame.font.SysFont('alias', 40)
         self.game = True
-        self.result_file = Results()
+        self.results_file = Results()
 
     def single_game(self):
         ''' Initializing of the game.
@@ -52,6 +52,8 @@ class Single:
         title_place = title.get_rect(center=(self.width/2, self.higth/12))
         field_title = self.font.render('Vastustajan kenttä', True, text_color)
         field_place = field_title.get_rect(center=(LTOP+165, self.higth/5))
+        quit = self.font.render('Palaa', True, text_color)
+        quit_place = quit.get_rect(center=(self.width-60, 40))
         ammo_text = self.font.render('Ammuksia jäljellä:', True, text_color)
         ammo_place = ammo_text.get_rect(center=(self.width/2+150, self.higth/3))
         ammo_start = self.title_font.render(str(self.board.get_ammo()), True, text_color)
@@ -64,6 +66,7 @@ class Single:
         all_sprites.draw(self.screen)
         self.screen.blit(title, title_place)
         self.screen.blit(field_title, field_place)
+        self.screen.blit(quit, quit_place)
         self.screen.blit(ammo_text, ammo_place)
         self.screen.blit(ammo_start, ammo_start_place)
 
@@ -74,15 +77,20 @@ class Single:
         clock = pygame.time.Clock()
         clock.tick(60)
         while self.game:
+            mouse_position = pygame.mouse.get_pos()
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     self.game = False
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     mouse_function = pygame.mouse.get_pressed()
-                    mouse_position = pygame.mouse.get_pos()
+                    if self.width - 100 < mouse_position[0] < self.width-20 and 15 < mouse_position[1] < 65:
+                        return
                     if mouse_function[0]:
                         if game_field.rect.collidepoint(mouse_position):
                             self.mouse_event(mouse_position, all_sprites, player)
+            if self.width - 100 <= mouse_position[0] <= self.width-20 and 15 <= mouse_position[1] <= 65:
+                pygame.draw.rect(self.screen, (155, 255, 229), [self.width - 100, 15, 80, 50])
+            self.screen.blit(quit, quit_place)
             pygame.display.update()
             all_sprites.draw(self.screen)
 
