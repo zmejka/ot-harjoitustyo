@@ -23,6 +23,7 @@
 - Toteutettu pelaaja vs tietokone osa.
 - Toteutettu pelajaan laivojen asettaminen kentälle.
 - Päivitetty molempien pelien käyttöliittymät.
-- Lisätty tulosten tallentaminen tiedostoon. Lisätty tulosten tulostus käyttöliittymä.
+- Lisätty tulosten tallentaminen tiedostoon. Toteutettu kolmeen parhaan tuloksen näkymä.
+- Päivitetty dokumentaatio. Lisätty käyttöohje.
 - Testaus: poistettu turhat testit (muuttujat ja metodit eivät enää käytössä). Testauksen kattavuus 80%.
 

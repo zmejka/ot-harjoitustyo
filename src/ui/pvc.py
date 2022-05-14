@@ -41,7 +41,10 @@ class PvC:
         hight : hight of the screen in pixels
         player_board : board object for player ships
         ai_board : board object for computer
-        title_font : font settings
+        title_font & font : font settings
+        player & computer : player-objects
+        game : status of the game
+        results_file : results object
         '''
     def __init__(self, screen, width, hight, player_board, ai_board):
         self.screen = screen
@@ -50,7 +53,7 @@ class PvC:
         self.player_board = player_board
         self.comp_board = ai_board
         self.title_font = pygame.font.SysFont('alias', 70)
-        self.announcement_font = pygame.font.SysFont('alias', 50)
+        self.announcement_font = pygame.font.SysFont('alias', 40)
         self.font = pygame.font.SysFont('alias', 40)
         self.player = Player("Pelaaja PvC", True)
         self.computer = Player("AI", False)
@@ -88,7 +91,7 @@ class PvC:
         ships = [('Lentotukialus', 5), ('Taistelulaiva',4), ('Risteilijä',3), ('Sukellusvene',3), ('Hävittäjä',2)]
         clock = pygame.time.Clock()
         clock.tick(FPS)
-        announcement = 'Aseta laivat oikeapuoliselle kentälle!'
+        announcement = 'Aseta laivat oikeapuoliselle kentälle! Vasen näppäin = vaaka, oikea näppäin = pysty.'
         self.announcement(announcement)
         running = True
         while running:
@@ -251,8 +254,8 @@ class PvC:
         announcement_place = announcement.get_rect(center=(self.width/2, self.higth-80))
         self.screen.blit(announcement, announcement_place)
         pygame.display.update()
-        pygame.time.delay(1000)
-        pygame.draw.rect(self.screen, background, [self.width/8, self.higth-120, 1020, 120])
+        pygame.time.delay(1500)
+        pygame.draw.rect(self.screen, background, [self.width/10-30, self.higth-120, 1200, 120])
         pygame.display.update()
 
     def sunken_ships_player(self):

@@ -40,4 +40,5 @@
 |11.5|5| Tulosten tallentaminen tiedostoon toiminnallisuus. Unittestit.
 |12.5|3| Unittestit jatkoa. Koodin siistiminen. Turhien tulostusten ja muuttujien poistot. Dogstringien päivitys.
 |13.5|3| Dokumentaation päivitys. 
+|14.5|5| Tulosten UI ja toiminnallisuus. Dokumentaatioiden päivitys. Testauksen viimestely. Virhe-etsintä ja korjaukset.
 |Yhteensä:| 102 | tuntia

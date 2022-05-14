@@ -106,6 +106,15 @@ class Main:
         return pl_vs_comp
 
     def result_list(self):
+        ''' Load results from the results_file.
+            Trim each row and change score from strin to integer.
+            Sort the list.
+            Args:
+                results : results object
+                result_list : list of the results loaded from the file
+            Returns:
+                3 best results in list (player, score)
+        '''
         results = Results()
         result_list = results.load_results()
         if not result_list:

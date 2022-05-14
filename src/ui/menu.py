@@ -63,7 +63,6 @@ class Menu:
                     if self.w_mid - 200 < mouse_pos[0] < self.w_mid + 200 and self.h_mid/4 + 460 < mouse_pos[1] < self.h_mid/4+530:
                         return "Quit"
 
-
             self.screen.fill(background)
 
             if self.w_mid - 200 <= mouse_pos[0] <= self.w_mid + 200 and self.h_mid/4+160 <= mouse_pos[1] <= self.h_mid/4+230:

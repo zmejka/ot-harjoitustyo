@@ -13,12 +13,11 @@ text_color = (0,51,102)
 rect_color = (155, 255, 229)
 
 class Scores:
-    ''' Main menu for BattleShip game
+    ''' Main menu for Scores of the game
         Arguments:
         screen : screen object
         width : screen width in pixels
         hight : screen hight in pixels
-        font : font settings
         '''
     def __init__(self, screen, width, hight):
         self.screen = screen
@@ -28,7 +27,7 @@ class Scores:
         self.h_mid = hight/2
 
     def scores(self, results):
-        ''' Main menu screen and Menu subjects. '''
+        ''' Main menu screen and Scores subjects. '''
         title = self.title_font.render('Laivanupotus', True, text_color)
         scores = self.title_font.render('Tulokset', True, text_color)
         quit = self.font.render('Palaa Menu-valikkoon', True, text_color)
@@ -49,7 +48,7 @@ class Scores:
             score2 = self.font.render('2. Tyhjä', True, text_color)
             score3 = self.font.render('3. Tyhjä', True, text_color)
 
-        '''Text on screen'''
+        '''Texts on screen'''
         title_place = title.get_rect(center=(self.w_mid, self.h_mid/6))
         scores_place = scores.get_rect(center=(self.w_mid, (self.h_mid/2)))
         quit_place = quit.get_rect(center=(self.w_mid, (self.h_mid+300)))
@@ -57,7 +56,7 @@ class Scores:
         score2_place = score2.get_rect(center=(self.w_mid, self.h_mid))
         score3_place = score3.get_rect(center=(self.w_mid, self.h_mid+100))
 
-        '''Main menu loop'''
+        '''Main menu loop for returning to Main Menu'''
         running = True
 
         while running:
@@ -68,7 +67,6 @@ class Scores:
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     if self.w_mid - 225 < mouse_pos[0] < self.w_mid + 225 and self.h_mid + 260 < mouse_pos[1] < self.h_mid + 330:
                         return
-
             
             self.screen.fill(background)
 
