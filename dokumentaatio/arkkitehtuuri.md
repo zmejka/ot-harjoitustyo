@@ -1,41 +1,25 @@
 # Arkkitehtuurikuvaus
 ----
-## Rakenne
+## Rakenne ja Sovelluslogiikka
 
-Sovelluksen rakenne koostuu luokista main, ship ja board. Lisäksi sovelluksessa on 3 käyttöliittymäluokkaa menu, single ja pvc  sekä 13 sprites-luokkaa. Luokat on jaettu kansioihin ui, objects ja sprites. Kansiossa src sijaitsee sovelluslogiikka, kansiossa ui käyttöliittymät, objects kansiossa luokat ship ja board ja kansiossa sprites sprite-luokat. Kansiossa assets sijaitsevat ui tarvitsemat kuvatiedostot sekä image-luokka.
+Sovelluksen rakenteeseen kuuluvat pakkaukset UI, objects ja sprites. Objects pakkaukseen kuuluvat luokat player, ship ja board. Sovelluksessa on 4 käyttöliittymäluokkaa menu, single, pvc ja scores, sekä 13 sprites-luokkaa. Kansiossa src sijaitsee sovelluslogiikka, kansiossa ui käyttöliittymät, objects kansiossa olio-luokat ja kansiossa sprites sprite-luokat. Kansiossa assets sijaitsevat ui tarvitsemat kuvatiedostot sekä image-luokka.
 
-![Rakenne](https://github.com/zmejka/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/rakenne_kuva.png)
+![Rakenne](https://github.com/zmejka/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/class_diagram.png)
+
+Luokassa Player on yksi käyttämätön metodi, jolle on tehty oma testi. Metodi on set_name() ja se on luotu käyttäjäkohtaisten tulosten tallentamista varten. Kuitenkin, toiminnallisuutta pelaajan oman nimen/tunniksen syöttämiseksi ei ehditty toteuttamaan ja se jäi jatkokehitykselle. Tämän vuoksi metodi ei poistettu ohjelmasta.
+
 ----
 ## Käyttöliittymä
 
-Käyttöliittymäluokat ovat menu, single ja pvc. Menu luokkaa sisältää aloitusvalikon, josta voi valita haluttu peli tai lopettaa sovelluksen käyttämistä.
+Käyttöliittymäluokat ovat menu, single, pvc ja scores. Menu luokkaa sisältää aloitusvalikon, josta voi valita haluttu peli, tarkastella tulokset tai lopettaa sovelluksen käyttämistä.
 
 ----
-## Sovelluslogiikka
 
-Player luokka ei ole vielä toteutettu. Tämän vuoksi rakenne on vajavaista.
+##Tietojen pysyväistallennus
 
-```mermaid
- classDiagram
-      Board "1" --> "*" Ship
-      Player "1-2" --> "1" Board
-      class Board{
-          board
-          visible
-          ships
-          game_status
-          ammo
-      }
-      class Ship{
-          name
-          length
-          orientation
-          status
-          position
-          hits
-      }
+Luokka Results tallentaa peleistä syntyvät tulokset txt. tiedostoon. Kun käyttäjä halua tarkastella tuloksia, main luokka hakee tulokset tiedostosta, järjestää ne ja palauttaa kolme parasta tulosta. Nämä tulokset näkyvät Scores käyttöliittymällä.
 
-```
+Sovellus tallentaa tiedot txt- tiedostoon muosossa: 'Pelaajan nimi, score'. Jokainen tulos tallentuu omalle riville.
 
 ----
 ## Päätoiminnallisuudet

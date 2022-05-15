@@ -19,11 +19,11 @@ class TestPlayer(unittest.TestCase):
 
     def test_set_name_long(self):
         self.assertEqual(self.player.set_name('anananananananananananananananananananan'), False)
-    
+
     def test_set_status(self):
         self.player.set_status(False)
         self.assertEqual(self.player._status, False)
-    
+
     def test_set_wrong_status(self):
         self.player.set_status('false')
         self.assertEqual(self.player._status, True)

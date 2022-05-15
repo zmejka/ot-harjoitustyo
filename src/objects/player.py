@@ -16,8 +16,8 @@ class Player:
         return self._name
 
     def set_name(self, name):
-        ''' Sen name of the player. It is no limitations for player name,
-            except length need to be between 3 - 39 symbols.
+        ''' Set name of the player. There are no limitations for player name,
+            except length has to be in between 3 - 39 symbols.
             Args:
                 name : string
             Returns:
@@ -36,6 +36,6 @@ class Player:
 
     def get_status(self):
         ''' Returns:
-            Status on the player.
+            Status of the player.
         '''
         return self._status

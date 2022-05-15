@@ -7,7 +7,7 @@ class Board:
         board : 10x10 zero-matrix.
         ships : list on ship objects.
         game_status : if "True" game is over.
-        ammo : number of ammos. In single game - 40. In PvC game - 100.
+        ammo : number of ammo. In single game - 40. In PvC game - 100.
         coordinates : list of tuples (row, column) of the all cells in matrix
     '''
 
@@ -15,7 +15,7 @@ class Board:
         self.board = [[0]*10 for i in range(10)]
         self.ships = []
         self._game_status = False
-        self._ammo = 40
+        self._ammo = 45
         self._coordinates = []
         for row, col in itertools.product(range(10), range(10)):
             self._coordinates.append((row,col))
@@ -165,7 +165,7 @@ class Board:
         return False
 
     def set_ammo(self, ammo):
-        ''' For PvC game: Set number of ammos to given number.
+        ''' For PvC game: Set number of ammo to given number.
             Args:
                 ammo : number of the ammunition
         '''
@@ -174,5 +174,5 @@ class Board:
 
     def get_ammo(self):
         ''' Returns:
-            number of the ammunition.'''
+            number of ammunition.'''
         return self._ammo

@@ -3,7 +3,6 @@
         background : color settings
         text_color : color settings for texts
         rect_color : color settings for objects
-        
 '''
 import pygame
 
@@ -49,22 +48,16 @@ class Menu:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     menu = False
-
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     if self.w_mid - 200 < mouse_pos[0] < self.w_mid + 200 and self.h_mid/4 + 160 < mouse_pos[1] < self.h_mid/4+230:
                         return "Single"
-
                     if self.w_mid - 200 < mouse_pos[0] < self.w_mid + 200 and self.h_mid/4 + 260 < mouse_pos[1] < self.h_mid/4+330:
                         return "PvC"
-
                     if self.w_mid - 200 < mouse_pos[0] < self.w_mid + 200 and self.h_mid/4 + 360 < mouse_pos[1] < self.h_mid/4+430:
                         return "Scores"
-
                     if self.w_mid - 200 < mouse_pos[0] < self.w_mid + 200 and self.h_mid/4 + 460 < mouse_pos[1] < self.h_mid/4+530:
                         return "Quit"
-
             self.screen.fill(background)
-
             if self.w_mid - 200 <= mouse_pos[0] <= self.w_mid + 200 and self.h_mid/4+160 <= mouse_pos[1] <= self.h_mid/4+230:
                 pygame.draw.rect(self.screen, rect_color, [self.w_mid-200, self.h_mid/4+160, 400, 70])
             if self.w_mid - 200 <= mouse_pos[0] <= self.w_mid + 200 and self.h_mid/4+260 <= mouse_pos[1] <= self.h_mid/4+330:
@@ -73,7 +66,6 @@ class Menu:
                 pygame.draw.rect(self.screen, rect_color, [self.w_mid-200, self.h_mid/4+360, 400, 70])
             if self.w_mid - 200 <= mouse_pos[0] <= self.w_mid + 200 and self.h_mid/4+460 <= mouse_pos[1] <= self.h_mid/4+530:
                 pygame.draw.rect(self.screen, rect_color, [self.w_mid-200, self.h_mid/4+460, 400, 70])
-
             self.screen.blit(title, title_place)
             self.screen.blit(single, single_place)
             self.screen.blit(player_vs_comp, player_vs_comp_place)

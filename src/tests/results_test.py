@@ -8,7 +8,7 @@ class TestResults(unittest.TestCase):
     def setUp(self):
         self.test_results = Results("test_results.txt")
         self.test_file = os.path.join(dirname, "..","test_results.txt")
-            
+
     def test_data_save_to_file(self):
         test_setup = ("TestUser", "48")
         self.test_results.write_results(test_setup)

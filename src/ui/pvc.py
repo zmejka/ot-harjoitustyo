@@ -83,7 +83,7 @@ class PvC:
         self.pvc_game(all_sprites, field_comp)
 
     def place_ships(self, field_player, all_sprites):
-        ''' Before starting player put 5 ships on right board. 
+        ''' Before starting player put 5 ships on right board.
             Args:
                 field_player : player's field object
                 all_sprites : list of sprites
@@ -113,9 +113,9 @@ class PvC:
                     announcement = 'Kaikki pelaajan laivat on kentällä! Peli on alkanut!'
                     self.announcement(announcement)
                     running = False
-    
+
     def pvc_game(self, all_sprites, field_comp):
-        ''' Game loop 
+        ''' Game loop
             Args:
                 field_comp : computer's field object
                 all_sprites : list of sprites
@@ -202,10 +202,12 @@ class PvC:
                 mouse_pos : mouse position coordinates in pixels
                 ships : list of the names of the ship's
                 all_sprites : list of sprites
-                mouse_func : list of the mouse get_pressed function :
+                mouse_func : list of the mouse get_pressed function:
                     0 - left button pressed, 2 - right button pressed
         '''
         if mouse_pos[0] <= RTOP or mouse_pos[1] <= LTOP:
+            return
+        if mouse_pos[0] >= RTOP+370 or mouse_pos[1] >= LTOP+370:
             return
         x_axis = (mouse_pos[0]-RTOP) - (mouse_pos[0]-RTOP)%CELL + RTOP
         y_axis = (mouse_pos[1] -LTOP) - (mouse_pos[1]-LTOP)%CELL + LTOP
@@ -242,19 +244,19 @@ class PvC:
                 elif name=='Sukellusvene':
                     all_sprites.add(SubmarineVert(x_axis, y_axis))
                 else:
-                    all_sprites.add(DestroyerVert(x_axis, y_axis))    
+                    all_sprites.add(DestroyerVert(x_axis, y_axis))
             ships.pop(0)
             pygame.display.flip()
 
     def announcement(self, text):
-        ''' Print a notification message at the bottom of the screen. 
-            The message disappears after 1 second.    
+        ''' Print a notification message at the bottom of the screen.
+            The message disappears after 1 second.
         '''
         announcement = self.announcement_font.render(text, True, (0,51,102))
         announcement_place = announcement.get_rect(center=(self.width/2, self.higth-80))
         self.screen.blit(announcement, announcement_place)
         pygame.display.update()
-        pygame.time.delay(1500)
+        pygame.time.delay(1200)
         pygame.draw.rect(self.screen, background, [self.width/10-30, self.higth-120, 1200, 120])
         pygame.display.update()
 

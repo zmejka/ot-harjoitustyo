@@ -3,9 +3,8 @@
         background : color settings
         text_color : color settings for texts
         rect_color : color settings for objects
-        
+
 '''
-from logging import exception
 import pygame
 
 background = (151,210,203)
@@ -34,7 +33,7 @@ class Scores:
         if results == None:
             score1 = self.font.render('1. Tyhjä', True, text_color)
             score2 = self.font.render('2. Tyhjä', True, text_color)
-            score3 = self.font.render('3. Tyhjä', True, text_color)            
+            score3 = self.font.render('3. Tyhjä', True, text_color)
         elif len(results) == 3:
             score1 = self.font.render((f"1. {results[0][0]} on käyttänyt vain {results[0][1]} ammusta"), True, text_color)
             score2 = self.font.render((f"2. {results[1][0]} on käyttänyt vain {results[1][1]} ammusta"), True, text_color)
@@ -67,7 +66,7 @@ class Scores:
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     if self.w_mid - 225 < mouse_pos[0] < self.w_mid + 225 and self.h_mid + 260 < mouse_pos[1] < self.h_mid + 330:
                         return
-            
+
             self.screen.fill(background)
 
             if self.w_mid - 225 <= mouse_pos[0] <= self.w_mid + 225 and self.h_mid+ 250 <= mouse_pos[1] <= self.h_mid + 330:

@@ -9,4 +9,3 @@ class Submarine(pygame.sprite.Sprite):
 
         self.rect = self.image.get_rect()
         self.rect.topleft = (x_axis,y_axis)
-        

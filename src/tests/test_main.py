@@ -1,6 +1,5 @@
 import os
 import unittest
-from unittest import result
 import pygame
 from main import Main
 from ui.menu import Menu
@@ -30,12 +29,12 @@ class TestShip(unittest.TestCase):
         test_screen = pygame.display.set_mode((self.width, self.hight))
         test_menu = Menu(test_screen, self.width, self.hight)
         self.assertIsInstance(test_menu, Menu)
-    
+
     def test_menu_single(self):
         pygame.init()
         test_screen = pygame.display.set_mode((self.width, self.hight))
         self.assertIsInstance(self.main.start_single(test_screen), Single)
-    
+
     def test_menu_not_pvc(self):
         pygame.init()
         test_screen = pygame.display.set_mode((self.width, self.hight))
@@ -45,7 +44,7 @@ class TestShip(unittest.TestCase):
         pygame.init()
         test_screen = pygame.display.set_mode((self.width, self.hight))
         self.assertIsInstance(self.main.start_pvc(test_screen), PvC)
-    
+
     def test_menu_not_single(self):
         pygame.init()
         test_screen = pygame.display.set_mode((self.width, self.hight))

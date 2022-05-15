@@ -31,7 +31,7 @@ class Single:
         font : font settings for other text
         game : game status. True, if game continue
     '''
-    
+
     def __init__(self, screen, width, hight, board):
         self.screen = screen
         self.width = width

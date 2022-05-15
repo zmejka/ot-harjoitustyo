@@ -7,4 +7,3 @@ class Field(pygame.sprite.Sprite):
         self.image = image("board.png")
         self.rect = self.image.get_rect()
         self.rect.topleft = (x_axis,y_axis)
-        
