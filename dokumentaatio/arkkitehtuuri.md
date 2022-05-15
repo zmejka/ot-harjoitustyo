@@ -26,12 +26,12 @@ Sovellus tallentaa tiedot txt- tiedostoon muosossa: 'Pelaajan nimi, score'. Joka
 
 ### Päävalikon alueiden toiminta
 
-Sovelluksen käynnistyessä ohjelma avaa Menu käyttöliittymä. Käyttäjä valitse toiminto. 
+Sovelluksen käynnistyessä ohjelma avaa ohjelman Päävalikon. Käyttäjä valitse toiminnon. 
 
-Jos käyttäjä valitse Lopeta Peli toiminto, palauttaa Menu arvon Quit ja ohjelma sulkeutuu. 
+Jos käyttäjä valitsee Lopeta Peli toiminnon, palauttaa Menu arvon Quit ja ohjelma sulkeutuu. 
 
-Jos käyttäjä valitse Yksinpeli toiminto, palauttaa Menu arvon Single. Main alustaa yksinpelia luomalla pelikenttä (Board), board luokasta luodaan 5 laivaa (Ship), sekä arvotaan laivoille paikat kentällä. Koordinaattien arvonnan jälkeen board luokkaa tarkistaa, että laiva on kentällä ja laiva ei ole päällekkäin muiden laivojen kanssa. Metodi palauttaa True, jos laivan laittaminen kentälle onnistuu. Muuten arvotaan uusi koordinaattipari. Tämän jälkeen luodaan ja alustetaan Single käyttäliittymä ja aloitetaan pelisilmukka. Silmukassa hiirenklikkauksella saadaan koordinaattipari ja kutsutaan board luokan metodi shot(). Jos tulos on 'ohi', peli jatkuu. Jos tulos on 'osuma', tarkistaa board luokkaa laivan tilanne. Jos laivan kaikkiin koordinaatteihin on osuttu, board luokka tarkistaan peli tilanne. Jos kaikki laivat on upotettu, peli päättyy, muuten peli jatkuu uudella klikkauksella.
-PvC peli on toteutettu samalla tavoin. PvC pelissa on kaksi board oliota kummassakin on 5 laivaa. Peli jatkuu vuorotteleen pelaajan ja tietokoneen välillä. 
+Jos käyttäjä valitsee Yksinpelin, palauttaa Menu arvon Single. Main alustaa yksinpelin luomalla pelikentän (Board). Board luokka luo 5 laiva-oliota (Ship), sekä arpoo laivoille paikat kentällä. Koordinaattien arvonnan jälkeen board luokka tarkistaa, että laiva on kentällä ja laiva ei ole päällekkäin muiden laivojen kanssa. Metodi palauttaa True, jos laivan sijoittaminen kentälle onnistuu. Muutoin arvotaan uusi koordinaattipari. Tämän jälkeen luodaan ja alustetaan Single käyttäliittymä ja aloitetaan pelisilmukka. Silmukassa hiirenklikkauksella saadaan koordinaattipari ja kutsutaan board luokan metodia shot(). Jos tulos on 'ohi', peli jatkuu. Jos tulos on 'osuma', tarkistaa board luokka laivan tilanteen. Jos laivan kaikkiin ruutuihin on osuttu, niin board luokka tarkistaa pelin tilanteen. Jos kaikki laivat ovat uponneet, peli päättyy, muutoin peli jatkuu uudella klikkauksella.
+PvC peli on toteutettu samalla tavoin. PvC pelissa on kaksi board oliota kummassakin on 5 laivaa. Peli jatkuu vuorotellen pelaajan ja tietokoneen välillä. 
 
 ### Ohjelman sulkeminen ja yksinpeli 
 

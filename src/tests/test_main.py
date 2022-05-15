@@ -9,7 +9,7 @@ from results import Results
 
 dirname = os.path.dirname(__file__)
 
-class TestShip(unittest.TestCase):
+class TestMain(unittest.TestCase):
     def setUp(self):
         self.main = Main()
         CELL = 3

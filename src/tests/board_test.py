@@ -3,7 +3,7 @@ import itertools
 from objects.board import Board
 from objects.ship import Ship
 
-class TestShip(unittest.TestCase):
+class TestBoard(unittest.TestCase):
     def setUp(self):
         self.board = Board()
         self.ship = Ship('testShip', 3, 1)

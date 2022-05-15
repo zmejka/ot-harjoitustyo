@@ -1,3 +1,5 @@
 Pelaaja PvC,37
 Pelaaja PvC,73
 Pelaaja PvC,33
+Pelaaja Single,31
+Pelaaja PvC,41
