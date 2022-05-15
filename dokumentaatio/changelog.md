@@ -25,5 +25,5 @@
 - Päivitetty molempien pelien käyttöliittymät.
 - Lisätty tulosten tallentaminen tiedostoon. Toteutettu kolmeen parhaan tuloksen näkymä.
 - Päivitetty dokumentaatio. Lisätty käyttöohje.
-- Testaus: poistettu turhat testit (muuttujat ja metodit eivät enää käytössä). Testauksen kattavuus 80%.
+- Testaus: poistettu turhat testit (muuttujat ja metodit, jotka eivät olleet enää käytössä). Testauksen kattavuus 79%.
 

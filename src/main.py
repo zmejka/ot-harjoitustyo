@@ -117,11 +117,10 @@ class Main:
         '''
         results = Results()
         result_list = results.load_results()
-        if not result_list:
-            return None
         score_list = []
         for row in result_list:
-            values = row[:-1].split(',')
+            row = row.strip('\n')
+            values = row.split(',')
             score_list.append((values[0], int(values[1])))
         score_list = sorted(score_list, key=lambda x:x[1], reverse=False)
         return score_list[0:3]

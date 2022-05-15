@@ -17,8 +17,8 @@ class Results:
                     loaded_results.append(line)
                 return loaded_results
         except FileNotFoundError:
-            loaded_results = self.write_results(("_", "_"))
-            return loaded_results
+            loaded_results = self.write_results(["Tyhjä", "9999"])
+            return ['Tyhjä,9999']
 
     def write_results(self, result):
         game_results_file = os.path.join(dirname, self.results_file)

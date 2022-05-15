@@ -1,12 +1,12 @@
 # Käyttöohje
 ----
 
-Projectin viimeisen version voi ladata Releases osiossa valitsemalla Source code.
+Projektin viimeisin versio on ladattavissa Releases osiosta valitsemalla Source code.
 
 ## Ohjelman asentaminen ja käynnistäminen
 ----
 
-Asenna riippuvuudetkomennolla:
+Asenna riippuvuudet komennolla:
 
     poetry install
 
@@ -17,12 +17,12 @@ Ohjelman voi käynnistä komennolla:
 ## Päävalikko:
 ----
 
-Sovellus käynnistyy päävalikkoon. Päävalikosta voi valita Yksinpelin tai Pelin tietokoneetta vasten valissä. Lisäksi päävalikosta pääse tarkastelemaan 3 parhaan tuloksen tekijät. Pelin lopettaminen tapahtuu Lopeta peli- valikossa. Pelin pesussäännöt voi lukea [ohjeesta](https://github.com/zmejka/ot-harjoitustyo/blob/master/dokumentaatio/battleship.pdf). 
+Sovellus käynnistyy päävalikkoon. Päävalikosta voit valita Yksinpelin tai Pelin tietokonetta vastaan. Tulokset-valinta näyttää kolme parasta tulosta. Sovelluksen sulkeminen tapahtuu valitsemall "Lopeta peli". Laivaupotuspelin perussäännöt ovat luettavissa [ohjeesta](https://github.com/zmejka/ot-harjoitustyo/blob/master/dokumentaatio/battleship.pdf). 
 
 ## Yksinpeli:
 ----
 
-Peli käynnistyy välittömästi. Pelissä on yksi kenttä, johon on piilotettu 5 laivaa. Laivojen löytämiseen on tarjolla 40 ammusta. Ampuminen tapahtuu klikkamalla hiiren vasemmalla näppäimella kentän soluja. Solu muuttuu siniseksi, jos paikassa ei ole laivaa, tai punaiseksi, jos laivaan on osuttu. Kun koko laiva on uppunut, tulostuu ruudulle ilmoitus mikä laiva on upotettu. Tässä pelissä jo avatun soluun ampuminen ei kuluta ammiksia. Peli päättyy, kun kaikki laivat ovat upponeet, tai kun ammukset loppuvat. Tämän jälkeen peli palautuu automaattisesti Päävalikkon. Jos pelin halua keskeyttää, pääsee takausiin Päävalikkoon Paluu-näppäintä painamalla.
+Peli käynnistyy välittömästi. Pelissä on yksi kenttä, jossa on piilotettu 5 sotalaivaa. Laivojen ampumiseen on käytettävissä 45 ammusta. Ampuminen tapahtuu klikkaamalla hiiren vasemmalla näppäimella kentän ruutuja. Ruutu muuttuu siniseksi, jos paikassa ei ole laivaa, tai punaiseksi, jos laivaan on osuttu. Kun jokin laiva on uponnut, näyttölle tulee ilmoitus, joka kertoo, mikä alus on upotettu. Tässä pelissä jo ammuttuun ruutuun ampuminen ei kuluta ammuksia. Peli päättyy, kun kaikki alukset ovat uponneet tai kun ammukset loppuvat. Tämän jälkeen peli palautuu automaattisesti Päävalikkoon. Jos haluaa keskeyttää pelin, niin pääsee takaisin Päävalikkoon Paluu-nappia painamalla.
 
 Yksinpelin näkymä.
 
@@ -31,20 +31,19 @@ Yksinpelin näkymä.
 ## Kaksinpeli:
 ----
 
-Pelin alussa pelaaja asettaa oikean puoliselle (omalle) kentälle 5 laiva. Laivat asetetaan seuraavassa järjestyksessä.
-Laivat:
+Pelin alussa pelaaja asettaa oikeanpuoleiselle (omalle) kentälle 5 laivaa. Laivat asetetaan seuraavassa järjestyksessä:
 
-- Carrier (Lentotukialus) - 5 solua
-- Battleship (Taistelulaiva) - 4 solua
-- Cruiser (Risteilija) - 3 solua
-- Submarine (Sukellusvene) - 3 solua
-- Destroyer (Hävittäjä) - 2 solua
+- Lentotukialus - 5 ruutua
+- Taistelulaiva - 4 ruutua
+- Risteilija - 3 ruutua
+- Sukellusvene - 3 ruutua
+- Hävittäjä - 2 ruutua
 
-Laivat asetetaan painamalla haluttuun paikkaan joko hiiren vasenta näppäintä, jolloin laiva asettuu vaakaasentoon, tai hiiren oikeinta näppäintä, jolloin laiva asettuu pystyasentoon. Laivoja ei voi asettaa kenttään ulkopuolelle tai päällekkäin. 
+Hiiren vasemmalla painikeella laiva asettuu vaaka-asentoon ja hiiren oikealla painikkeella pystyasentoon. Laivoja ei voi asettaa kentän ulkopuolelle tai päällekkäin. Laivat voi olla vierekkäisissä ruuduissa. 
 
 ![Laivat](https://github.com/zmejka/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/pvc_ships.png)
 
-Kun laivat  on asetettu kentälle, peli alkaa. Pelaaja ampuu vasemman puoliselle (vastustajan) kentälle. Tässä pelissä ei ole rajoitettu ammusten määrä, mutta jo kertalleen ammutun kenttään ampumisellä menettää vuoron tietokoneelle. Peli päätyy, kun pelaaja tai tietokene onnistuu löytämään ja upottamaan kaikki laivat. Tämän jälkeen peli palautuu automaattisesti Päävalikkon. Jos pelin halua keskeyttää, pääsee takausiin Päävalikkoon Paluu-näppäintä painamalla.
+Kun laivat  ovat asetettu kentälle, peli alkaa. Pelaaja ja tietokone ampuvat vuorotellen. Pelaaja aloittaa. Pelaaja ampuu vasemmanpuoleiselle (vastustajan) kentälle. Tässä pelissä ei ole rajoitettu ammusten määrää, mutta jo kertalleen ammuttuun ruutuun ampumisella menettää vuoron tietokoneelle. Peli päättyy, kun pelaaja tai tietokone onnistuu löytämään ja upottamaan kaikki vastustajan laivat. Tämän jälkeen peli palautuu automaattisesti Päävalikkoon. Jos pelin haluaa keskeyttää, niin pääsee takaisin Päävalikkoon Paluu-nappia painamalla.
 
 ![PvC](https://github.com/zmejka/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/pvc_layout.png)
 

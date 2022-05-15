@@ -30,7 +30,8 @@ class Scores:
         title = self.title_font.render('Laivanupotus', True, text_color)
         scores = self.title_font.render('Tulokset', True, text_color)
         quit = self.font.render('Palaa Menu-valikkoon', True, text_color)
-        if results == None:
+
+        if results[0][1] == 9999 or results == None:
             score1 = self.font.render('1. Tyhjä', True, text_color)
             score2 = self.font.render('2. Tyhjä', True, text_color)
             score3 = self.font.render('3. Tyhjä', True, text_color)
