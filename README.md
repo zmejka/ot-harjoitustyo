@@ -26,11 +26,12 @@ Pelissä tietokonetta vastaan tavoitteena on upottaa tietokoneen laivat ennen ku
 
 ### Julkaisu
 
+[Laivanupotus v.1.0](https://github.com/zmejka/ot-harjoitustyo/releases/tag/laivanupotus_v1)
+
 [Release 1](https://github.com/zmejka/ot-harjoitustyo/releases/tag/viikko5)
 
 [Release 2](https://github.com/zmejka/ot-harjoitustyo/releases/tag/viikko6)
 
-[Release 3](https://github.com/zmejka/ot-harjoitustyo/releases/tag/viikko6)
 
 ### Asennus
 ----
